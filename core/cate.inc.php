@@ -52,7 +52,7 @@ function getCateByPage($page,$pageSize = 3)
  */
 function editCate($id){
     $arr = $_POST;
-    if (update("shopping_cate", $arr, "id={$id}")) {
+    if (update("shopping_cate", $arr, "id={$id}")!= -1) {
         $mes="update success";
     } else {
         $mes = "update failed";

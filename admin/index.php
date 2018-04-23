@@ -25,7 +25,7 @@ checkLogined();
 //     var_dump($rows1);
 @$page = $_REQUEST['page'] ? (int) $_REQUEST['page'] : 1;
 $rows = getAdminByPage($page, $pageSize = 3);
-$rowsPro=getProByPage($page,$pageSize=3);
+
 // var_dump($rowsPro);
 // var_dump($rowsPro);
 
@@ -68,6 +68,8 @@ if (!$rows) {
                 index4 = url.indexOf("listCates");
                 index5 = url.indexOf("editCates");
                 index6 = url.indexOf("addPros");
+                index7 = url.indexOf("listPros");
+                index8 = url.indexOf("editPros");
                 if (index != -1) {
                     $.ajax({
 
@@ -81,6 +83,7 @@ if (!$rows) {
                             $("#editCates").hide();
                             $("#addPros").hide();
                             $("#listPros").hide();
+                            $("#editPros").hide();
                         }
                     });
                 }
@@ -96,6 +99,7 @@ if (!$rows) {
                             $("#editCates").hide();
                             $("#addPros").hide();
                             $("#listPros").hide();
+                            $("#editPros").hide();
                         }
                     });
                 }
@@ -111,6 +115,7 @@ if (!$rows) {
                             $("#editCates").hide();
                             $("#addPros").hide();
                             $("#listPros").hide();
+                            $("#editPros").hide();
                         }
                     });
                 }
@@ -126,6 +131,7 @@ if (!$rows) {
                             $("#addPros").hide();
                             $("#addCate1").show();
                             $("#listPros").hide();
+                            $("#editPros").hide();
                         }
                     });
                 }
@@ -141,6 +147,7 @@ if (!$rows) {
                             $("#editCates").hide();
                             $("#addPros").hide();
                             $("#listPros").hide();
+                            $("#editPros").hide();
                         }
                     });
                 }
@@ -156,6 +163,7 @@ if (!$rows) {
                             $("#editCates").show();
                             $("#addPros").hide();
                             $("#listPros").hide();
+                            $("#editPros").hide();
                         }
                     });
                 }
@@ -171,9 +179,44 @@ if (!$rows) {
                             $("#editCates").hide();
                             $("#addPros").show();
                             $("#listPros").hide();
+                            $("#editPros").hide();
                         }
                     });
                 }
+                if (index7 != -1) {
+                    $.ajax({
+                        success: function () {
+                            $("#editManagers").hide();
+                            $("#addManagers").hide();
+                            $("#listManagers").hide();
+                            $("#main").hide();
+                            $("#addCate1").hide();
+                            $("#listCates").hide();
+                            $("#editCates").hide();
+                            $("#addPros").hide();
+                            $("#listPros").show();
+                            $("#editPros").hide();
+                        }
+                    });
+                }
+                if (index8 != -1) {
+                    $.ajax({
+                        success: function () {
+                            $("#editManagers").hide();
+                            $("#addManagers").hide();
+                            $("#listManagers").hide();
+                            $("#main").hide();
+                            $("#addCate1").hide();
+                            $("#listCates").hide();
+                            $("#editCates").hide();
+                            $("#addPros").hide();
+                            $("#listPros").hide();
+                            $("#editPros").show();
+
+                        }
+                    });
+                }
+                $("#editPros").hide();
                 $("#listPros").hide();
                 $("#main").show();
                 $("#addPros").hide();
@@ -194,6 +237,7 @@ if (!$rows) {
                     $("#editCates").hide();
                     $("#listPros").hide();
                     $("#addPros").hide();
+                    $("#editPros").hide();
                 });
                 $("#listManager").click(function () {
                     $("#main").hide();
@@ -205,23 +249,9 @@ if (!$rows) {
                     $("#editCates").hide();
                     $("#addPros").hide();
                     $("#listPros").hide();
+                    $("#editPros").hide();
                 });
-                $(".editManager").click(function EventHandler(e) {
-                    // console.log(e.currentTarget.id);
-                    $("#editManagers").show();
-                    $("#listManagers").hide();
-                    $("#addManagers").hide();
-                    $("#main").hide();
-                    $("#addCate1").hide();
-                    $("#listCates").hide();
-                    $("#editCates").hide();
-                    $("#addPros").hide();
-                    $("#listPros").hide();
-                    //     var id1=id.substr(11,id.length);
-                    // //    console.log(id1);
-                    //     window.location="index.php?editManagers&id"+id1;
-                    // $("#editManagers").load("./editManager.html");
-                });
+                //
                 $("#addCate").click(function () {
                     $("#editManagers").hide();
                     $("#listManagers").hide();
@@ -232,6 +262,7 @@ if (!$rows) {
                     $("#editCates").hide();
                     $("#addPros").hide();
                     $("#listPros").hide();
+                    $("#editPros").hide();
                 });
                 $("#listCate").click(function () {
                     $("#editManagers").hide();
@@ -243,18 +274,9 @@ if (!$rows) {
                     $("#addPros").hide();
                     $("#editCates").hide();
                     $("#listPros").hide();
+                    $("#editPros").hide();
                 });
-                $("#editCate").click(function () {
-                    $("#editManagers").hide();
-                    $("#listManagers").hide();
-                    $("#addManagers").hide();
-                    $("#main").hide();
-                    $("#addCate1").hide();
-                    $("#listCates").hide();
-                    $("#editCates").show();
-                    $("#addPros").hide();
-                    $("#listPros").hide();
-                });
+
                 $("#addPro").click(function () {
                     $("#editManagers").hide();
                     $("#listManagers").hide();
@@ -265,6 +287,7 @@ if (!$rows) {
                     $("#editCates").hide();
                     $("#addPros").show();
                     $("#listPros").hide();
+                    $("#editPros").hide();
                 });
                 $("#listPro").click(function () {
                     $("#editManagers").hide();
@@ -276,6 +299,7 @@ if (!$rows) {
                     $("#editCates").hide();
                     $("#addPros").hide();
                     $("#listPros").show();
+                    $("#editPros").hide();
                 });
             });
         </script>
@@ -305,12 +329,12 @@ if (!$rows) {
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         welcome:
                                         <?php
-                                        if (isset($_SESSION['adminName'])) {
-                                            echo $_SESSION['adminName'];
-                                        } elseif (isset($_COOKIE['adminName'])) {
-                                            echo $_COOKIE['adminName'];
-                                        }
-                                        ?>
+if (isset($_SESSION['adminName'])) {
+    echo $_SESSION['adminName'];
+} elseif (isset($_COOKIE['adminName'])) {
+    echo $_COOKIE['adminName'];
+}
+?>
                                             <strong class="caret"></strong>
                                     </a>
                                     <ul class="dropdown-menu">
@@ -458,6 +482,9 @@ if (!$rows) {
                     </div>
                     <div id="listPros">
                         <?php include_once './listPro.php'?>
+                    </div>
+                    <div id="editPros">
+                        <?php include_once './editPro.php'?>
                     </div>
                 </div>
             </div>

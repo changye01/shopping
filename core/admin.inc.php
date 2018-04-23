@@ -60,7 +60,7 @@ function editAdmin($id)
     $arr = $_POST;
 
     $arr['password'] = md5($_POST['password']);
-    if (update("shopping_admin", $arr, "id={$id}")) {
+    if (update("shopping_admin", $arr, "id={$id}") != -1) {
         $mes = "update success";
     } else {
         $mes = "update failed";
@@ -68,7 +68,7 @@ function editAdmin($id)
     return $mes;
 
 }
-function getAdminByPage($page,$pageSize = 3)
+function getAdminByPage($page, $pageSize = 3)
 {
     $sql = "select * from shopping_admin";
     global $totalRows;
