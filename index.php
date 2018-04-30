@@ -164,7 +164,7 @@ if(!($rowsCate1&&is_array($rowsCate1))){
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <form role="form">
+                                <form role="form" action="./admin/doAdminAction.php?act=reg" method="POST" enctype="multipart/form-data">
                                      <div class="form-group">
                                         <label for="username1">username</label><input type="username" class="form-control" id="username1" />
                                     </div>
@@ -195,7 +195,7 @@ if(!($rowsCate1&&is_array($rowsCate1))){
                                     </div>
                                     <div class="checkbox">
                                          <label><input type="checkbox" />同意本公司的什莫什莫条款</label>
-                                    </div> <button type="submit" class="btn btn-default">Submit</button>
+                                    </div> <button type="submit" class="btn  btn-default">Submit</button>
                                 </form>
                                
                             </div>
