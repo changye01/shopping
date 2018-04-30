@@ -329,12 +329,12 @@ if (!$rows) {
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         welcome:
                                         <?php
-if (isset($_SESSION['adminName'])) {
-    echo $_SESSION['adminName'];
-} elseif (isset($_COOKIE['adminName'])) {
-    echo $_COOKIE['adminName'];
-}
-?>
+                                        if (isset($_SESSION['adminName'])) {
+                                            echo $_SESSION['adminName'];
+                                        } elseif (isset($_COOKIE['adminName'])) {
+                                            echo $_COOKIE['adminName'];
+                                        }
+                                        ?>
                                             <strong class="caret"></strong>
                                     </a>
                                     <ul class="dropdown-menu">

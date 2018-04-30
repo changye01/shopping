@@ -62,8 +62,8 @@
                 <td>
                     <!-- checkbox 默认选中 -->
                     <!-- checked="checked" -->
-                    <input type="checkbox" class="checkbox col-sm-1" id="checkbox1">
-                    <label for="checkbox1" class="col-sm-11">
+                    <input type="checkbox" class="checkbox col-sm-1" id="checkbox1<?php echo $row['id'];?>">
+                    <label for="checkbox1<?php echo $row['id'];?>" class="col-sm-11">
                         <?php echo $row['id'];?>
                     </label>
                 </td>

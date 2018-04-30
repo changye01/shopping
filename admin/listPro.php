@@ -1,5 +1,28 @@
 <?php
-$rowsPro=getProByPage($page,$pageSize=3);
+@$order=$_REQUEST['order']?$_REQUEST['order']:null;
+$orderBy=$order?"order by p.".$order:null;
+@$keywords=$_REQUEST['keywords']?$_REQUEST['keywords']:null;
+$where=$keywords?"where p.pName like '%{$keywords}%'":null;
+// $rowsPro=getProByPage($page,$pageSize=3);
+$sql = "select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from shopping_pro as p join shopping_cate c on p.cId=c.id {$where} {$orderBy}";
+    global $totalRowsPro;
+    $totalRowsPro = getResultNum($sql);
+    global $totalPagePro;
+    // echo $totalRows;
+    // $pageSize = 3;
+    // ceil() 函数向上舍入为最接近的整数
+    $totalPagePro = ceil($totalRowsPro / $pageSize);
+
+    if ($page < 1 || $page == null || !is_numeric($page)) {
+        $page = 1;
+    }
+    if ($page > $totalPagePro) {
+        $page = $totalPagePro;
+    }
+    $offset = ($page - 1) * $pageSize;
+    $sql = "SELECT p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId FROM shopping_pro AS p JOIN shopping_cate c ON p.cId=c.id {$where} {$orderBy} LIMIT {$offset},{$pageSize}";
+    // $rows = getAllAdmin();
+    $rowsPro = &fetchAll($sql);
 ?>
 <!doctype html>
 <html>
@@ -27,12 +50,13 @@ function delPro(id) {
 function search() {
 	if (event.keyCode == 13) {
 		var val = document.getElementById("search").value;
-		window.location = "listPro.php?keywords=" + val;
+		// alert(val);
+		window.location = "index.php?listPros&keywords=" + val;
 	}
 }
 
 function change(val) {
-	window.location = "listPro.php?order=" + val;
+	window.location = "index.php?listPros&order=" + val;
 }
 </script>
 </head>
@@ -45,9 +69,7 @@ function change(val) {
 			</div>
 			<div class="details">
 				<div class="details_operation clearfix">
-					<div class="bui_select">
-						<input type="button" value="添&nbsp;&nbsp;加" class="add" onclick="addPro()">
-					</div>
+					
 					<div class="fr">
 						<div class="text">
 							<span>商品价格：</span>
@@ -82,21 +104,20 @@ function change(val) {
 							<th style="text-align: center;">编号</th>
 							<th style="text-align: center;">商品名称</th>
 							<th style="text-align: center;">商品分类</th>
+							
 							<th style="text-align: center;">是否上架</th>
+							<th style="text-align: center;">商品价格</th>
 							<th style="text-align: center;">上架时间</th>
-
 							<th style="text-align: center;">操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php $i=1;foreach($rowsPro as $row){?>
+						<?php $i=1;foreach($rowsPro as $row):?>
 						<tr>
 							<!--这里的id和for里面的c1 需要循环出来-->
 							<td>
-								<input type="checkbox" id="c1" class="check" value="<?php echo $row['id'];?>">
-								<label for="c1" class="label">
-									<?php echo $i;?>
-								</label>
+								<input type="checkbox" id="c1<?php echo $row['id'];?>" class="checkbox col-lg-1" value="<?php echo $row['id'];?>">
+								<label for="c1<?php echo $row['id'];?>" class="col-lg-11"><?php echo $i;?></label>
 							</td>
 							<td style="text-align: center;">
 								<?php echo $row['pName'];?>
@@ -108,15 +129,18 @@ function change(val) {
 								<?php echo $row['isShow']==1?"上架ai":"为商家";?>
 							</td>
 							<td style="text-align: center;">
-								<?php echo $row['pubTime'];?>
+								<?php echo $row['iPrice'];?>
+							</td>
+							<td style="text-align: center;">
+								<?php echo date("Y-m-d H:i:s",$row['pubTime']);?>
 							</td>
 
 
 							<td align="center">
-								<input type="button" value="详情" class="btn" onclick="showDetail(<?php echo $row['id'];?>,'<?php echo $row['pName'];?>')">
+								
 								<input type="button"  value="详情" class="btn" data-toggle="modal" data-target="#modal-container-131096<?php echo $row['id']?>">
 								<input type="button" value="修改" class="btn" onclick="editPro(<?php echo $row['id']?>)">
-								<input type="button" value="删除" class="btn" onclick="delPro(<)">
+								<input type="button" value="删除" class="btn" onclick="delPro(<?php echo $row['id']?>)">
 								<!-- <a href="#modal-container-131096" data-toggle="modal" data-target="#myModal">触发遮罩窗体</a> -->
 								<div class="modal fade" id="modal-container-131096<?php echo $row['id']?>" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
@@ -130,43 +154,43 @@ function change(val) {
 											<div class="modal-body">
 												<table class="table table-responsive table-hover table-condensed table-striped" cellspacing="0" cellpadding="0">
 													<tr>
-														<td width="20%" align="right">商品名称</td>
+														<td width="20%" align="center">商品名称</td>
 														<td>
 															<?php echo $row['pName'];?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">商品类别</td>
+														<td width="20%" align="center">商品类别</td>
 														<td>
 															<?php echo $row['cName'];?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">商品货号</td>
+														<td width="20%" align="center">商品货号</td>
 														<td>
 															<?php echo $row['pSn'];?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">商品数量</td>
+														<td width="20%" align="center">商品数量</td>
 														<td>
 															<?php echo $row['pNum'];?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">商品价格</td>
+														<td width="20%" align="center">商品价格</td>
 														<td>
 															<?php echo $row['mPrice'];?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">幕课网价格</td>
+														<td width="20%" align="center">幕课网价格</td>
 														<td>
 															<?php echo $row['iPrice'];?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">商品图片</td>
+														<td width="20%" align="center">商品图片</td>
 														<td >
 															<?php
 															// <!-- echo $row['id']; -->
@@ -174,25 +198,25 @@ function change(val) {
 															foreach($rowsImg as $img){
 																?>
 																<img width="100" height="100" src="uploads/<?php echo $img['albumPath']?>" alt="">&nbsp;&nbsp;
-													<?php
+															<?php
 															}
 															?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">是否上架</td>
+														<td width="20%" align="center">是否上架</td>
 														<td>
 															<?php echo $row['isShow']==1?"上架ai":"为商家";?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">是否热卖</td>
+														<td width="20%" align="center">是否热卖</td>
 														<td>
 															<?php echo $row['isHot']==1?"hot":"cold";?>
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="right">
+														<td width="20%" align="center">
 															商品描述
 														</td>
 														<td>
@@ -207,21 +231,15 @@ function change(val) {
                                                 <button type="button" class="btn btn-primary">保存</button> -->
 											</div>
 										</div>
-
 									</div>
-
 								</div>
-
-
 							</td>
-						</tr>
-
-						
-						<?php $i++;}?>
+						</tr>	
+						<?php $i++;endforeach;?>
 						<?php if($totalRows>$pageSize):?>
 						<tr>
 						<td colspan="6" style="text-align:center;">
-							<?php echo showPage($page,$totalPagePro,"#listPros");?>
+							<?php echo showPage($page,$totalPagePro,"#listPros&keywords={$keywords}&order={$order}");?>
 						</td>
 						</tr>
 						<?php endif;?>

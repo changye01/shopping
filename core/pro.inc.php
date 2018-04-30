@@ -106,13 +106,19 @@ function editPro($id)
     return $mes;
 }
 
+/**
+ * 删除商品信息
+ *
+ * @param [type] $id
+ * @return void
+ */
 function delPro($id)
 {
     $where = "id=$id";
-    $res = delete("imooc_pro", $where);
-    $proImgs = getAllImgByProId($id);
-    if ($proImgs && is_array($proImgs)) {
-        foreach ($proImgs as $proImg) {
+    $res = delete("shopping_pro", $where);
+    $rowsImg = getAllImgByProId($id);
+    if ($rowsImg !=-1&& is_array($rowsImg)) {
+        foreach ($rowsImg as $proImg) {
             if (file_exists("uploads/" . $proImg['albumPath'])) {
                 unlink("uploads/" . $proImg['albumPath']);
             }
@@ -132,11 +138,11 @@ function delPro($id)
         }
     }
     $where1 = "pid={$id}";
-    $res1 = delete("imooc_album", $where1);
-    if ($res && $res1) {
-        $mes = "删除成功!<br/><a href='listPro.php' target='mainFrame'>查看商品列表</a>";
+    $res1 = delete("shopping_album", $where1);
+    if ($res !=-1&& $res1!=-1) {
+        $mes="delete success";
     } else {
-        $mes = "删除失败!<br/><a href='listPro.php' target='mainFrame'>重新删除</a>";
+        $mes = "delete failed";
     }
     return $mes;
 }
@@ -147,7 +153,7 @@ function delPro($id)
  */
 function getAllProByAdmin()
 {
-    $sql = "select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName from imooc_pro as p join imooc_cate c on p.cId=c.id";
+    $sql = "select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName from shopping_pro as p join shopping_cate c on p.cId=c.id";
     $rows = fetchAll($sql);
     return $rows;
 }
@@ -182,7 +188,7 @@ function getProById($id)
  */
 function checkProExist($cid)
 {
-    $sql = "select * from imooc_pro where cId={$cid}";
+    $sql = "select * from shopping_pro where cId={$cid}";
     $rows = fetchAll($sql);
     return $rows;
 }
@@ -205,7 +211,7 @@ function getAllPros()
  */
 function getProsByCid($cid)
 {
-    $sql = "select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from imooc_pro as p join imooc_cate c on p.cId=c.id where p.cId={$cid} limit 4";
+    $sql = "SELECT p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from shopping_pro as p join shopping_cate c on p.cId=c.id where p.cId={$cid} limit 4";
     $rows = fetchAll($sql);
     return $rows;
 }
@@ -217,7 +223,7 @@ function getProsByCid($cid)
  */
 function getSmallProsByCid($cid)
 {
-    $sql = "select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from imooc_pro as p join imooc_cate c on p.cId=c.id where p.cId={$cid} limit 4,4";
+    $sql = "select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from shopping_pro as p join shopping_cate c on p.cId=c.id where p.cId={$cid} limit 4,4";
     $rows = fetchAll($sql);
     return $rows;
 }
@@ -228,7 +234,7 @@ function getSmallProsByCid($cid)
  */
 function getProInfo()
 {
-    $sql = "select id,pName from imooc_pro order by id asc";
+    $sql = "select id,pName from shopping_pro order by id asc";
     $rows = fetchAll($sql);
     return $rows;
 }

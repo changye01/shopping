@@ -77,17 +77,13 @@ print_r($proInfo);
 						</td>
 						<td>
 							<select name="cId" class="form-control">
-								<?php
-foreach ($rowsCate1 as $row) {
-    ?>
+								<?php foreach ($rowsCate1 as $row) {?>
 									<option value="<?php echo $row['id']; ?>" >
 										<?php echo $row['cName']; ?>
 									</option>
-
 								<?php }?>
 							</select>
 						</td>
-
 					</tr>
 					<tr>
 						<td>商品货号</td>

@@ -1,5 +1,5 @@
 <?php
-require_once '../include.php';
+// require_once '../include.php';
 /**
  * 检查是否有管理员
  *
@@ -68,6 +68,13 @@ function editAdmin($id)
     return $mes;
 
 }
+/**
+ * 根据页面得到商品管理员信息
+ *
+ * @param [type] $page
+ * @param integer $pageSize
+ * @return array
+ */
 function getAdminByPage($page, $pageSize = 3)
 {
     $sql = "select * from shopping_admin";

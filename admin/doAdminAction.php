@@ -25,9 +25,12 @@ if ($act == "logout") {
     alertMes($mes,'index.php?listCates');
 }elseif($act=="addPro"){
     $mes=addPro();
-    alertMes($mes,"index.php?listPros");
+    alertMes($mes,"index.php?addPros");
 }elseif($act=="editPro"){
     // $where=""
     $mes=editPro($id);
+    alertMes($mes,"index.php?listPros");
+}elseif($act=="delPro"){
+    $mes=delPro($id);
     alertMes($mes,"index.php?listPros");
 }

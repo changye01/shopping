@@ -20,13 +20,8 @@ $rowsCate = getCateByPage($page, $pageSize = 3);
             function delCate(id){
                 if (window.confirm("Are you sure you want to delete? ")) {
                     window.location="doAdminAction.php?act=delCate&id="+id;
-                } 
-                    
-               
-
-            }
-           
-    
+                }               
+            }  
     </script>
 
 </head>
