@@ -252,6 +252,10 @@ if (!$rows) {
                     <div id="listProImgs">
                         <?php include_once './listProImg.php'?>
                     </div>
+                    <div id="listOrders">
+                        <?php include_once './listOrder.php'?>
+                    </div>
+                                
                 </div>
             </div>
         </div>

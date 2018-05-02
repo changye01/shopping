@@ -1,6 +1,7 @@
 <?php
-$rowsUser = getUserByPage($page, $pageSize = 3);
+$rowsOrder = getOrderByPage($page, $pageSize = 3);
 // var_dump($rowsUser);
+// var_dump($rowsOrder);
 ?>
 <!doctype html>
 <html>

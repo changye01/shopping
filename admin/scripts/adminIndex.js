@@ -11,7 +11,8 @@ $(document).ready(function () {
     index8 = url.indexOf("editPros");
     index9 = url.indexOf("addUsers");
     index10 = url.indexOf("listUsers");
-    index11=url.indexOf("editUsers");
+    index11 = url.indexOf("editUsers");
+    index12 = url.indexOf("listOrders");
     if (index != -1) {
         $.ajax({
             success: function () {
@@ -28,6 +29,7 @@ $(document).ready(function () {
                 $("#editPros").hide();
                 $("#listUsers").hide();
                 $("#editUsers").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -48,6 +50,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -68,6 +71,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -88,6 +92,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -108,6 +113,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -128,6 +134,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -148,6 +155,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -168,6 +176,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -188,6 +197,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -208,6 +218,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -228,6 +239,7 @@ $(document).ready(function () {
                 $("#listUsers").show();
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
             }
         });
     }
@@ -248,6 +260,28 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").show();
                 $("#listProImgs").hide();
+                $("#listOrders").hide();
+            }
+        });
+    }
+    if (index12 != -1) {
+        $.ajax({
+            success: function () {
+                $("#editManagers").hide();
+                $("#addManagers").hide();
+                $("#listManagers").hide();
+                $("#main").hide();
+                $("#addCate1").hide();
+                $("#listCates").hide();
+                $("#editCates").hide();
+                $("#addPros").hide();
+                $("#listPros").hide();
+                $("#editPros").hide();
+                $("#addUsers").hide();
+                $("#listUsers").hide();
+                $("#editUsers").hide();
+                $("#listProImgs").hide();
+                $("#listOrders").show();
             }
         });
     }
@@ -265,6 +299,7 @@ $(document).ready(function () {
     $("#listUsers").hide();
     $("#editUsers").hide();
     $("#listProImgs").hide();
+    $("#listOrders").hide();
     $("#addManager").click(function () {
         $("#main").hide();
         $("#listManagers").hide();
@@ -280,6 +315,7 @@ $(document).ready(function () {
         $("#listUsers").hide();
         $("#editUsers").hide();
         $("#listProImgs").hide();
+        $("#listOrders").hide();
     });
     $("#listManager").click(function () {
         $("#main").hide();
@@ -296,6 +332,7 @@ $(document).ready(function () {
         $("#listUsers").hide();
         $("#editUsers").hide();
         $("#listProImgs").hide();
+        $("#listOrders").hide();
     });
     //
     $("#addCate").click(function () {
@@ -313,6 +350,7 @@ $(document).ready(function () {
         $("#listUsers").hide();
         $("#editUsers").hide();
         $("#listProImgs").hide();
+        $("#listOrders").hide();
     });
     $("#listCate").click(function () {
         $("#editManagers").hide();
@@ -329,6 +367,7 @@ $(document).ready(function () {
         $("#listUsers").hide();
         $("#editUsers").hide();
         $("#listProImgs").hide();
+        $("#listOrders").hide();
     });
     $("#addPro").click(function () {
         $("#editManagers").hide();
@@ -345,6 +384,7 @@ $(document).ready(function () {
         $("#listUsers").hide();
         $("#editUsers").hide();
         $("#listProImgs").hide();
+        $("#listOrders").hide();
     });
     $("#listPro").click(function () {
         $("#editManagers").hide();
@@ -361,6 +401,7 @@ $(document).ready(function () {
         $("#listUsers").hide();
         $("#editUsers").hide();
         $("#listProImgs").hide();
+        $("#listOrders").hide();
     });
     $("#addUser").click(function () {
         $("#editManagers").hide();
@@ -377,6 +418,7 @@ $(document).ready(function () {
         $("#listUsers").hide();
         $("#editUsers").hide();
         $("#listProImgs").hide();
+        $("#listOrders").hide();
     });
     $("#listUser").click(function () {
         $("#editManagers").hide();
@@ -393,6 +435,7 @@ $(document).ready(function () {
         $("#listUsers").show();
         $("#editUsers").hide();
         $("#listProImgs").hide();
+        $("#listOrders").hide();
     });
     $("#listProImg").click(function () {
         $("#editManagers").hide();
@@ -409,5 +452,23 @@ $(document).ready(function () {
         $("#listUsers").hide();
         $("#editUsers").hide();
         $("#listProImgs").show();
+        $("#listOrders").hide();
+    });
+    $("#listOrder").click(function () {
+        $("#editManagers").hide();
+        $("#listManagers").hide();
+        $("#addManagers").hide();
+        $("#main").hide();
+        $("#addCate1").hide();
+        $("#listCates").hide();
+        $("#editCates").hide();
+        $("#addPros").hide();
+        $("#listPros").hide();
+        $("#editPros").hide();
+        $("#addUsers").hide();
+        $("#listUsers").hide();
+        $("#editUsers").hide();
+        $("#listProImgs").hide();
+        $("#listOrders").show();
     });
 });
