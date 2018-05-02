@@ -105,9 +105,9 @@ if(!$rowsCate1){
 						</td>
 					</tr>
 					<tr>
-						<td>商品慕课价</td>
+						<td>商品平台价</td>
 						<td>
-							<input type="text" class="form-control" name="iPrice" placeholder="请输入商品慕课价" />
+							<input type="text" class="form-control" name="iPrice" placeholder="请输入商品平台价" />
 						</td>
 					</tr>
 					<tr>

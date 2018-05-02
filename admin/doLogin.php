@@ -3,6 +3,7 @@ header("content-type:text/html;charset=utf-8");
 // session_start();
 require_once '../include.php';
 $username=$_POST['username'];
+// sql防注入
 $username=addslashes($username);
 $password=md5($_POST['password']);
 $verify=$_POST['verifyPassword'];

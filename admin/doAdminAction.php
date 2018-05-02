@@ -33,4 +33,26 @@ if ($act == "logout") {
 }elseif($act=="delPro"){
     $mes=delPro($id);
     alertMes($mes,"index.php?listPros");
+}elseif($act=="addUser"){
+    $mes=addUser();
+    alertMes($mes,"index.php?addUsers");
+    
+}elseif($act=="reg"){
+    $mes=reg();
+    alertMes($mes,"../index.php");
+}elseif($act=="login"){
+    $mes=login();
+    alertMes($mes,"../index.php");
+}elseif($act=="delUser"){
+    $mes=delUser($id);
+    alertMes($mes,"index.php?listUsers");
+}elseif($act=="editUser"){
+    $mes=editUser($id);
+    alertMes($mes,"index.php?listUsers");
+}elseif($act=="userOut"){
+    userOut();
+}elseif($act=="addOrder"){
+    $mes=addOrder($id);
+    // alertMes($mes,"../proDetails.php?id={$id}");
+    alertMes($mes,"../proDetails.php?id={$id}");
 }

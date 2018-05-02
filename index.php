@@ -71,23 +71,31 @@ if(!($rowsCate1&&is_array($rowsCate1))){
                                 <ul class="nav navbar-nav navbar-right">
 
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">hello world :
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">hello:
+                                            <?php
+                                        if (isset($_SESSION['username'])) {
+                                            echo $_SESSION['username'];
+                                        }
+                                        // } elseif (isset($_COOKIE['username'])) {
+                                        //     echo $_COOKIE['username'];
+                                        // }
+                                        ?>
                                             <strong class="caret"></strong>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="#modal-container-131096" data-toggle="modal">login</a>
+                                                <a href="#modal-container-131096" data-toggle="modal" class="col-sm-2">login</a>
                                             </li>
                                             <li>
-                                                <a href="#modal-container-131097" data-toggle="modal">Rigister</a>
+                                                <a href="#modal-container-131097" data-toggle="modal" class="col-sm-1">Rigister</a>
                                             </li>
                                             <li>
-                                                <a href="#">Something</a>
+                                                <a href="#" class="col-sm-1">Something</a>
                                             </li>
                                             <li class="divider">
                                             </li>
                                             <li>
-                                                <a href="#">quit</a>
+                                                <a href="./admin/doAdminAction?act=userOut" class="col-sm-1">quit</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -108,7 +116,7 @@ if(!($rowsCate1&&is_array($rowsCate1))){
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" role="form" action="./doLogin.php" method="POST">
+                                <form class="form-horizontal" role="form" action="./admin/doAdminAction.php?act=login" method="POST">
                                     <div class="form-group">
                                         <label for="username" class="col-sm-2 control-label">username</label>
                                         <div class="col-sm-10">
@@ -121,22 +129,7 @@ if(!($rowsCate1&&is_array($rowsCate1))){
                                             <input type="password" class="form-control" id="password" name="password" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="verifyPassword" class="col-sm-2 control-label">验证码</label>
-                                        <div class="col-sm-2">
-                                            <input type="text" class="form-control" id="verifyPassword" name="verifyPassword" />
-
-                                        </div>
-                                        <img src="getVerify.php" alt="">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="autoFlag" value="1" />Auto login</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" class="btn btn-default">Sign in</button>
@@ -165,39 +158,46 @@ if(!($rowsCate1&&is_array($rowsCate1))){
                             </div>
                             <div class="modal-body">
                                 <form role="form" action="./admin/doAdminAction.php?act=reg" method="POST" enctype="multipart/form-data">
-                                     <div class="form-group">
-                                        <label for="username1">username</label><input type="username" class="form-control" id="username1" />
+                                    <div class="form-group">
+                                        <label for="username1">username</label>
+                                        <input type="username" name="username" class="form-control" id="username1" />
                                     </div>
                                     <div class="form-group">
-                                            <label for="exampleInputPassword1">Password</label><input type="password" class="form-control" id="exampleInputPassword1" />
-                                       </div>
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" name="password" id="exampleInputPassword1"
+                                        />
+                                    </div>
                                     <div class="form-group">
-                                        <label for="email1">Email address</label><input type="email" class="form-control" id="email1" />
+                                        <label for="email1">Email address</label>
+                                        <input type="email" class="form-control" id="email1" />
                                     </div>
                                     <div class="form-group">
                                         <label>Sex</label>
-                                            <label class="radio-inline">
-                                                    <input type="radio" name="sex" id="sex1" value="1" checked>男
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="sex" id="sex2"  value="2">女
-                                                </label>
-                                                <label class="radio-inline">
-                                                        <input type="radio" name="sex" id="sex3"  value="3">保密
-                                                    </label>
-                                        </div>
-                                    
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" id="sex1" value="1" checked>男
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" id="sex2" value="2">女
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" id="sex3" value="3">保密
+                                        </label>
+                                    </div>
+
                                     <div class="form-group">
-                                         <label for="exampleInputFile">File input</label><input type="file" id="exampleInputFile" />
+                                        <label for="myFile">头像</label>
+                                        <input type="file" id="myFile" name="face" />
                                         <p class="help-block">
-                                            
+
                                         </p>
                                     </div>
                                     <div class="checkbox">
-                                         <label><input type="checkbox" />同意本公司的什莫什莫条款</label>
-                                    </div> <button type="submit" class="btn  btn-default">Submit</button>
+                                        <label>
+                                            <input type="checkbox" />同意本公司的什莫什莫条款</label>
+                                    </div>
+                                    <button type="submit" class="btn  btn-default">Submit</button>
                                 </form>
-                               
+
                             </div>
                             <div class="modal-footer">
                                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

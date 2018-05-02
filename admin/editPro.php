@@ -104,7 +104,7 @@ print_r($proInfo);
 						</td>
 					</tr>
 					<tr>
-						<td>商品慕课价</td>
+						<td>商品平台价</td>
 						<td>
 							<input type="text" class="form-control" name="iPrice" value="<?php echo $proInfo['iPrice'] ?>" />
 						</td>

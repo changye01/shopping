@@ -82,8 +82,8 @@ if(!$rowsCate1){
 		<td><input type="text" name="mPrice"  placeholder="请输入商品市场价"/></td>
 	</tr>
 	<tr>
-		<td align="right">商品慕课价</td>
-		<td><input type="text" name="iPrice"  placeholder="请输入商品慕课价"/></td>
+		<td align="right">商品平台价</td>
+		<td><input type="text" name="iPrice"  placeholder="请输入商品平台价"/></td>
 	</tr>
 	<tr>
 		<td align="right">商品描述</td>

@@ -58,251 +58,7 @@ if (!$rows) {
             background-image: url('./2.jpg'); } #manage-left2{ background-color: #505254; } */ /* .text-dark{ color:gray;
             } */ /* td{ align:center; } */
         </style>
-        <script>
-            $(document).ready(function () {
-                var url = window.location.href;
-                index = url.indexOf("addManagers");
-                index1 = url.indexOf("editManagers");
-                index2 = url.indexOf("listManagers");
-                index3 = url.indexOf("addCate1");
-                index4 = url.indexOf("listCates");
-                index5 = url.indexOf("editCates");
-                index6 = url.indexOf("addPros");
-                index7 = url.indexOf("listPros");
-                index8 = url.indexOf("editPros");
-                if (index != -1) {
-                    $.ajax({
-
-                        success: function () {
-                            $("#main").hide();
-                            $("#listManagers").hide();
-                            $("#editManagers").hide();
-                            $('#addManagers').show();
-                            $("$addCate1").hide();
-                            $("#listCates").hide();
-                            $("#editCates").hide();
-                            $("#addPros").hide();
-                            $("#listPros").hide();
-                            $("#editPros").hide();
-                        }
-                    });
-                }
-                if (index1 != -1) {
-                    $.ajax({
-                        success: function () {
-                            $("#editManagers").show();
-                            $("#listManagers").hide();
-                            $("#addManagers").hide();
-                            $("#main").hide();
-                            $("$addCate1").hide();
-                            $("#listCates").hide();
-                            $("#editCates").hide();
-                            $("#addPros").hide();
-                            $("#listPros").hide();
-                            $("#editPros").hide();
-                        }
-                    });
-                }
-                if (index2 != -1) {
-                    $.ajax({
-                        success: function () {
-                            $("#editManagers").hide();
-                            $("#addManagers").hide();
-                            $("#listManagers").show();
-                            $("#main").hide();
-                            $("#addCate1").hide();
-                            $("#listCates").hide();
-                            $("#editCates").hide();
-                            $("#addPros").hide();
-                            $("#listPros").hide();
-                            $("#editPros").hide();
-                        }
-                    });
-                }
-                if (index3 != -1) {
-                    $.ajax({
-                        success: function () {
-                            $("#editManagers").hide();
-                            $("#addManagers").hide();
-                            $("#listManagers").hide();
-                            $("#main").hide();
-                            $("#listCates").hide();
-                            $("#editCates").hide();
-                            $("#addPros").hide();
-                            $("#addCate1").show();
-                            $("#listPros").hide();
-                            $("#editPros").hide();
-                        }
-                    });
-                }
-                if (index4 != -1) {
-                    $.ajax({
-                        success: function () {
-                            $("#editManagers").hide();
-                            $("#addManagers").hide();
-                            $("#listManagers").hide();
-                            $("#main").hide();
-                            $("#addCate1").hide();
-                            $("#listCates").show();
-                            $("#editCates").hide();
-                            $("#addPros").hide();
-                            $("#listPros").hide();
-                            $("#editPros").hide();
-                        }
-                    });
-                }
-                if (index5 != -1) {
-                    $.ajax({
-                        success: function () {
-                            $("#editManagers").hide();
-                            $("#addManagers").hide();
-                            $("#listManagers").hide();
-                            $("#main").hide();
-                            $("#addCate1").hide();
-                            $("#listCates").hide();
-                            $("#editCates").show();
-                            $("#addPros").hide();
-                            $("#listPros").hide();
-                            $("#editPros").hide();
-                        }
-                    });
-                }
-                if (index6 != -1) {
-                    $.ajax({
-                        success: function () {
-                            $("#editManagers").hide();
-                            $("#addManagers").hide();
-                            $("#listManagers").hide();
-                            $("#main").hide();
-                            $("#addCate1").hide();
-                            $("#listCates").hide();
-                            $("#editCates").hide();
-                            $("#addPros").show();
-                            $("#listPros").hide();
-                            $("#editPros").hide();
-                        }
-                    });
-                }
-                if (index7 != -1) {
-                    $.ajax({
-                        success: function () {
-                            $("#editManagers").hide();
-                            $("#addManagers").hide();
-                            $("#listManagers").hide();
-                            $("#main").hide();
-                            $("#addCate1").hide();
-                            $("#listCates").hide();
-                            $("#editCates").hide();
-                            $("#addPros").hide();
-                            $("#listPros").show();
-                            $("#editPros").hide();
-                        }
-                    });
-                }
-                if (index8 != -1) {
-                    $.ajax({
-                        success: function () {
-                            $("#editManagers").hide();
-                            $("#addManagers").hide();
-                            $("#listManagers").hide();
-                            $("#main").hide();
-                            $("#addCate1").hide();
-                            $("#listCates").hide();
-                            $("#editCates").hide();
-                            $("#addPros").hide();
-                            $("#listPros").hide();
-                            $("#editPros").show();
-
-                        }
-                    });
-                }
-                $("#editPros").hide();
-                $("#listPros").hide();
-                $("#main").show();
-                $("#addPros").hide();
-                $("#editManagers").hide();
-                $("#addManagers").hide();
-                $("#listManagers").hide();
-                $("#addCate1").hide();
-                $("#listCates").hide();
-                $("#editCates").hide();
-
-                $("#addManager").click(function () {
-                    $("#main").hide();
-                    $("#listManagers").hide();
-                    $("#editManagers").hide();
-                    $('#addManagers').show();
-                    $("#addCate1").hide();
-                    $("#listCates").hide();
-                    $("#editCates").hide();
-                    $("#listPros").hide();
-                    $("#addPros").hide();
-                    $("#editPros").hide();
-                });
-                $("#listManager").click(function () {
-                    $("#main").hide();
-                    $("#addManagers").hide();
-                    $("#editManagers").hide();
-                    $("#listManagers").show();
-                    $("#addCate1").hide();
-                    $("#listCates").hide();
-                    $("#editCates").hide();
-                    $("#addPros").hide();
-                    $("#listPros").hide();
-                    $("#editPros").hide();
-                });
-                //
-                $("#addCate").click(function () {
-                    $("#editManagers").hide();
-                    $("#listManagers").hide();
-                    $("#addManagers").hide();
-                    $("#main").hide();
-                    $("#addCate1").show();
-                    $("#listCates").hide();
-                    $("#editCates").hide();
-                    $("#addPros").hide();
-                    $("#listPros").hide();
-                    $("#editPros").hide();
-                });
-                $("#listCate").click(function () {
-                    $("#editManagers").hide();
-                    $("#listManagers").hide();
-                    $("#addManagers").hide();
-                    $("#main").hide();
-                    $("#addCate1").hide();
-                    $("#listCates").show();
-                    $("#addPros").hide();
-                    $("#editCates").hide();
-                    $("#listPros").hide();
-                    $("#editPros").hide();
-                });
-
-                $("#addPro").click(function () {
-                    $("#editManagers").hide();
-                    $("#listManagers").hide();
-                    $("#addManagers").hide();
-                    $("#main").hide();
-                    $("#addCate1").hide();
-                    $("#listCates").hide();
-                    $("#editCates").hide();
-                    $("#addPros").show();
-                    $("#listPros").hide();
-                    $("#editPros").hide();
-                });
-                $("#listPro").click(function () {
-                    $("#editManagers").hide();
-                    $("#listManagers").hide();
-                    $("#addManagers").hide();
-                    $("#main").hide();
-                    $("#addCate1").hide();
-                    $("#listCates").hide();
-                    $("#editCates").hide();
-                    $("#addPros").hide();
-                    $("#listPros").show();
-                    $("#editPros").hide();
-                });
-            });
-        </script>
+        <script src="./scripts/adminIndex.js"></script>
     </head>
 
     <body>
@@ -396,11 +152,9 @@ if (!$rows) {
                             </div>
                             <div id="panel-element-3" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <a href="thinglist" style="color: #505254;">商品图片列表</a>
+                                    <a href="#listProImgs" id="listProImg" style="color: #505254;">商品图片列表</a>
                                 </div>
-                                <div class="panel-body">
-                                    <a href="thinglist" style="color: #505254;">分类列表</a>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -409,9 +163,9 @@ if (!$rows) {
                             </div>
                             <div id="panel-element-4" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <a href="thinglist" style="color: #505254;">订单修改</a>
+                                    <a href="#listOrders" id="listOrder" style="color: #505254;">订单列表</a>
                                 </div>
-                                <div class="panel-body">
+                                <!-- <div class="panel-body">
                                     <a href="thinglist" style="color: #505254;">订单修改</a>
                                 </div>
                                 <div class="panel-body">
@@ -419,7 +173,7 @@ if (!$rows) {
                                 </div>
                                 <div class="panel-body">
                                     <a href="#" style="color: #505254;">深灰色链接。</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -428,10 +182,10 @@ if (!$rows) {
                             </div>
                             <div id="panel-element-5" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <a href="thinglist" style="color: #505254;">添加用户</a>
+                                    <a href="#addUsers" id="addUser" style="color: #505254;">添加用户</a>
                                 </div>
                                 <div class="panel-body">
-                                    <a href="thinglist" style="color: #505254;">用户列表</a>
+                                    <a href="#listUsers" id="listUser" style="color: #505254;">用户列表</a>
                                 </div>
                             </div>
                         </div>
@@ -485,6 +239,18 @@ if (!$rows) {
                     </div>
                     <div id="editPros">
                         <?php include_once './editPro.php'?>
+                    </div>
+                    <div id="addUsers">
+                        <?php include_once './addUser.php'?>
+                    </div>
+                    <div id="listUsers">
+                        <?php include_once './listUser.php'?>
+                    </div>
+                    <div id="editUsers">
+                        <?php include_once './editUser.php'?>
+                    </div>
+                    <div id="listProImgs">
+                        <?php include_once './listProImg.php'?>
                     </div>
                 </div>
             </div>
