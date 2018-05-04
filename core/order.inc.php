@@ -40,3 +40,13 @@ function getOrderByPage($page, $pageSize = 3)
     $rowsOrder = &fetchAll($sql);
     return $rowsOrder;
 }
+function delOrder($id){
+    $where="id={$id}";
+    if(delete("shopping_order",$where)!=-1){
+        $mes="订单完成";
+
+    }else{
+        $mes="订单完成失败";
+    }
+    return $mes;                                                                                                     
+}

@@ -106,4 +106,8 @@ function getUserByPage($page, $pageSize = 3)
     $rowsUser = &fetchAll($sql);
     return $rowsUser;
 }
-
+function getUserByOrderUid($id){
+	$sql = "SELECT u.username from shopping as u join shopping_order o on u.id=o.uid where u.id={$id}";
+    $username = fetchOne($sql);
+    return $username;
+}

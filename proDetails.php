@@ -92,6 +92,110 @@ if(!($proImgs&&is_array($proImgs))){
                             </nav>
                         </div>
                     </div>
+                    <!-- 登陆窗体 start -->
+                <div class="modal fade" id="modal-container-131096" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    标题
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" action="./admin/doAdminAction.php?act=login" method="POST">
+                                    <div class="form-group">
+                                        <label for="username" class="col-sm-2 control-label">username</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="username" name="username" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="col-sm-2 control-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="password" name="password" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-default">Sign in</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="button" class="btn btn-primary">保存</button> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 登陆窗体 end -->
+                <!-- 注册窗体 start -->
+                <div class="modal fade" id="modal-container-131097" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    注册页面
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" action="./admin/doAdminAction.php?act=reg" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="username1">username</label>
+                                        <input type="username" name="username" class="form-control" id="username1" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" name="password" id="exampleInputPassword1"
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email1">Email address</label>
+                                        <input type="email" class="form-control" id="email1" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sex</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" id="sex1" value="1" checked>男
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" id="sex2" value="2">女
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="sex" id="sex3" value="3">保密
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="myFile">头像</label>
+                                        <input type="file" id="myFile" name="face" />
+                                        <p class="help-block">
+
+                                        </p>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" />同意本公司的什莫什莫条款</label>
+                                    </div>
+                                    <button type="submit" class="btn  btn-default">Submit</button>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                                <button type="button" class="btn btn-primary">保存</button> -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- 注册窗体 end -->
                     <div class="row clearfix">
                         <div class="userPosition comWidth col-md-4">
                             <strong>
@@ -181,6 +285,15 @@ if(!($proImgs&&is_array($proImgs))){
                                                 <label for="num" class="col-sm-2 control-label" >数量：</label>
                                                 <div class="col-sm-2">
                                                     <input type="text" value="1" name="num" class="col-sm-8">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <!-- <label for="num" class="col-sm-2 control-label" >数量：</label> -->
+                                                <div class="col-sm-2">
+                                                    <input type="hidden"  value="<?php echo $proInfo['iPrice'];?>" name="price" class="col-sm-8 ">
+                                                    <input type="hidden"  value="<?php @$userId=$_SESSION['loginFlag'];
+                                                    echo $userId;?>" name="uid" class="col-sm-8 ">
+                                                    <!-- <input type="hidden" value=">" name="totalPrice"> -->
                                                 </div>
                                             </div>
                                             <div class="form-group">

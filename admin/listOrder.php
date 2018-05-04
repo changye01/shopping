@@ -1,42 +1,20 @@
 <?php
-$rowsOrder = getOrderByPage($page, $pageSize = 3);
+@$rowsOrder = getOrderByPage($page, $pageSize = 3);
 // var_dump($rowsUser);
-// var_dump($rowsOrder);
+// var_dump($rowsOrder)
 ?>
 <!doctype html>
 <html>
 
 <head>
     <meta charset="utf-8">
-
-    <!-- <script src="../../plugins/jquery-3.3.1.js"></script>
-    <script src="../../plugins/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="../../plugins/bootstrap.css"> -->
     <script>
         
-            function editUser(id){
-                window.location="index.php?editUsers&id="+id;
-            }
-            function delUser(id){
-                if (window.confirm("Are you sure you want to delete? ")) {
-                    window.location="doAdminAction.php?act=delUser&id="+id;
+            function delOrder(id){
+                if (window.confirm("确定订单完成? ")) {
+                    window.location="doAdminAction.php?act=delOrder&id="+id;
                 }
             }
-            // $(document).ready(function(){
-            //     $(".delManager").click(function EventHandler(e){
-            //         id1=e.currentTarget.id;
-            //         id2=id1.substr(10,id1.length);
-            //         console.log(id2);
-            //         $.post("doAdminAction.php",{
-            //             id:id2,
-            //             act:"delAdmin"
-            //         },function(data,status){
-            //             // alert();
-            //         });
-            //     });
-            // });
-    
     </script>
 
 </head>
@@ -48,20 +26,32 @@ $rowsOrder = getOrderByPage($page, $pageSize = 3);
                 id
             </td>
             <td>
-                pid
+                商品名
             </td>
             <td>
-                color
+                用户名
             </td>
             <td>
-                num
+                商品颜色
             </td>
             <td>
-                location
+                数量
+            </td>
+            <td>
+                地址
+            </td>
+            <td>
+                价格
+            </td>
+            <td>
+                总价
+            </td>
+            <td>
+                action
             </td>
         </tr>
         <tbody>
-            <?php $i=1;foreach($rowsUser as $row):?>
+            <?php $i=1;foreach($rowsOrder as $row):?>
             <!-- <form action="editManager.php" method="POST"> -->
             <tr>
                 <td>
@@ -73,24 +63,49 @@ $rowsOrder = getOrderByPage($page, $pageSize = 3);
                     </label>
                 </td>
                 <td>
-                    <?php echo $row['username'];?>
+                    <?php 
+                        $proName=getProByOrderPid($row['pid']);
+                        foreach($proName as $val){
+                            echo $val;
+                        }
+                    ?>
                 </td>
                 <td>
-                    <?php echo $row['email']?>
+                    <?php 
+                        $username=getUserByOrderUid($row['uid']);
+                        // var_dump($username);
+                        foreach($username as $val){
+                            echo $val;
+                        }
+                    ?>
                 </td>
                 <td>
-                    <?php echo $row['activeFlag']==0?'未激活':'激活';?>
+                    <?php echo $row['color']?>
                 </td>
                 <td>
-                    <input type="button" class="btn-link col-sm-6 " value="edit" id="editUser" onclick="editUser(<?php echo $row['id'];?>)" >
-                    <input type="button" class="btn-link col-sm-6 delUser" value="delete" id="delUser" onclick="delUser(<?php echo $row['id'];?>)" >
+                    <?php echo $row['num'];?>
+                </td>
+                <td>
+                    <?php echo $row['location']?>
+                </td>
+                <td>
+                    <?php echo $row['price']?>
+                </td>
+                <td>
+                    <?php $totalPrice=$row['price']*$row['num'];
+                          echo $totalPrice;
+                    ?>
+                </td>
+                <td>
+                    <!-- <input type="button" class="btn-link col-sm-6 " value="edit" id="editUser" onclick="editUser(<?php echo $row['id'];?>)" > -->
+                    <input type="button" class="btn-link col-sm-6  " value="完成订单" id="delOrder" onclick="delOrder(<?php echo $row['id'];?>)" >
                 </td>
             </tr>
             <?php $i++; endforeach;?>
             <!-- </form> -->
-            <?php if($totalRowsUser>$pageSize):?>
+            <?php if($totalRowsOrder>$pageSize):?>
             <tr>
-                <td colspan="4"><?php echo showPage($page,$totalPageUser,"#listUsers")?></td>
+                <td colspan="9"><?php echo showPage($page,$totalPageOrder,"#listOrders")?></td>
             </tr>
             <?php endif;?>
         </tbody>

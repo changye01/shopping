@@ -12,7 +12,7 @@ $(document).ready(function () {
     index9 = url.indexOf("addUsers");
     index10 = url.indexOf("listUsers");
     index11 = url.indexOf("editUsers");
-    index12 = url.indexOf("listOrders");
+    index12=url.indexOf("listOrders");
     if (index != -1) {
         $.ajax({
             success: function () {
@@ -20,7 +20,7 @@ $(document).ready(function () {
                 $("#listManagers").hide();
                 $("#editManagers").hide();
                 $('#addManagers').show();
-                $("$addCate1").hide();
+                $("#addCate1").hide();
                 $("#listCates").hide();
                 $("#editCates").hide();
                 $("#addUsers").hide();
@@ -40,7 +40,7 @@ $(document).ready(function () {
                 $("#listManagers").hide();
                 $("#addManagers").hide();
                 $("#main").hide();
-                $("$addCate1").hide();
+                $("#addCate1").hide();
                 $("#listCates").hide();
                 $("#editCates").hide();
                 $("#addPros").hide();
@@ -471,4 +471,5 @@ $(document).ready(function () {
         $("#listProImgs").hide();
         $("#listOrders").show();
     });
+    
 });

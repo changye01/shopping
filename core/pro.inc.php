@@ -117,7 +117,7 @@ function delPro($id)
     $where = "id=$id";
     $res = delete("shopping_pro", $where);
     $rowsImg = getAllImgByProId($id);
-    if ($rowsImg !=-1&& is_array($rowsImg)) {
+    if ($rowsImg != -1 && is_array($rowsImg)) {
         foreach ($rowsImg as $proImg) {
             if (file_exists("uploads/" . $proImg['albumPath'])) {
                 unlink("uploads/" . $proImg['albumPath']);
@@ -139,8 +139,8 @@ function delPro($id)
     }
     $where1 = "pid={$id}";
     $res1 = delete("shopping_album", $where1);
-    if ($res !=-1&& $res1!=-1) {
-        $mes="delete success";
+    if ($res != -1 && $res1 != -1) {
+        $mes = "delete success";
     } else {
         $mes = "delete failed";
     }
@@ -180,6 +180,12 @@ function getProById($id)
     $sql = "SELECT p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from shopping_pro as p join shopping_cate c on p.cId=c.id where p.id={$id}";
     $row = fetchOne($sql);
     return $row;
+}
+function getProByOrderPid($id)
+{
+    $sql = "SELECT p.pName from shopping_pro as p join shopping_order o on p.id=o.pid where p.id={$id}";
+    $proName = fetchOne($sql);
+    return $proName;
 }
 /**
  * 检查分类下是否有产品

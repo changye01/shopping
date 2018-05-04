@@ -36,7 +36,6 @@ if ($act == "logout") {
 }elseif($act=="addUser"){
     $mes=addUser();
     alertMes($mes,"index.php?addUsers");
-    
 }elseif($act=="reg"){
     $mes=reg();
     alertMes($mes,"../index.php");
@@ -55,4 +54,7 @@ if ($act == "logout") {
     $mes=addOrder($id);
     // alertMes($mes,"../proDetails.php?id={$id}");
     alertMes($mes,"../proDetails.php?id={$id}");
+}elseif($act=="delOrder"){
+    $mes=delOrder($id);
+    alertMes($mes,"index.php?listOrders");
 }
