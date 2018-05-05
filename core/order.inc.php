@@ -40,13 +40,36 @@ function getOrderByPage($page, $pageSize = 3)
     $rowsOrder = &fetchAll($sql);
     return $rowsOrder;
 }
+/**
+ * 删除订单
+ *
+ * @param [int] $id
+ * @return string
+ */
 function delOrder($id){
     $where="id={$id}";
     if(delete("shopping_order",$where)!=-1){
-        $mes="订单完成";
+        $mes="订单删除成功";
 
     }else{
-        $mes="订单完成失败";
+        $mes="订单删除失败";
     }
     return $mes;                                                                                                     
+}
+/**
+ * 完成订单
+ *
+ * @param [int] $id
+ * @return string
+ */
+function doneOrder($id){
+    $where="id={$id}";
+    $arr['flag']=1;
+    $sql="UPDATE shopping_order set flag=1 where id={$id}"; 
+    $row=fetchOne($sql);
+    if($row!=-1){
+        $mes="success";
+    }else{
+        $mes="failed";
+    }
 }

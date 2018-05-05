@@ -26,13 +26,7 @@ checkLogined();
 @$page = $_REQUEST['page'] ? (int) $_REQUEST['page'] : 1;
 $rows = getAdminByPage($page, $pageSize = 3);
 
-// var_dump($rowsPro);
-// var_dump($rowsPro);
 
-// var_dump($rows1);
-// $sql="select * form shopping_admin where id='{$id}'";
-// $rowEdit=fetchOne($sql);
-// print_r($rowEdit);
 if (!$rows) {
     alertMes("No administrator", "index.php?addManager");
     exit;
@@ -50,15 +44,18 @@ if (!$rows) {
         <script src="scripts/jquery-ui/js/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="../plugins/kindeditor/kindeditor.js"></script>
         <script type="text/javascript" charset="utf-8" src="../plugins/kindeditor/lang/zh_CN.js"></script>
-        <!-- <script src="../plugins/jquery-3.3.1.js"></script> -->
+       
         <script src="../plugins/bootstrap.min.js"></script>
         <link rel="stylesheet" href="../plugins/bootstrap.css">
         <style type="css/text">
-            /* .manage-left{ background-color: #505254; background-image: url('./2.jpg'); } #manage-left{ background-color: #505254;
-            background-image: url('./2.jpg'); } #manage-left2{ background-color: #505254; } */ /* .text-dark{ color:gray;
-            } */ /* td{ align:center; } */
+            
         </style>
         <script src="./scripts/adminIndex.js"></script>
+        <script>
+            $(document).ready(function(){
+                
+            });
+        </script>
     </head>
 
     <body>
@@ -163,17 +160,11 @@ if (!$rows) {
                             </div>
                             <div id="panel-element-4" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <a href="#listOrders" id="listOrder" style="color: #505254;">订单列表</a>
-                                </div>
-                                <!-- <div class="panel-body">
-                                    <a href="thinglist" style="color: #505254;">订单修改</a>
+                                    <a href="#listOrders" id="listOrder" style="color: #505254;">未完成订单</a>
                                 </div>
                                 <div class="panel-body">
-                                    <a href="thinglist" style="color: #505254;">订单总是修改</a>
+                                    <a href="#donelistOrders" id="donelistOrder" style="color: #505254;">已完成订单</a>
                                 </div>
-                                <div class="panel-body">
-                                    <a href="#" style="color: #505254;">深灰色链接。</a>
-                                </div> -->
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -255,7 +246,9 @@ if (!$rows) {
                     <div id="listOrders">
                         <?php include_once './listOrder.php'?>
                     </div>
-                                
+                    <div id="donelistOrders">
+                        <?php include_once './donelistOrders.php'?>
+                    </div>          
                 </div>
             </div>
         </div>

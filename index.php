@@ -84,10 +84,18 @@ if(!($rowsCate1&&is_array($rowsCate1))){
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a href="#modal-container-131096" data-toggle="modal" style="display: <>" class="col-sm-2">login</a>
+                                                <a href="#modal-container-131096" data-toggle="modal" style="display: <?php if(isset($_SESSION['username'])){
+                                                    echo "none";
+                                                 }else {
+                                                     echo "unset";
+                                                 }   ?>" class="col-sm-2">login</a>
                                             </li>
                                             <li>
-                                                <a href="#modal-container-131097" data-toggle="modal" class="col-sm-1">Rigister</a>
+                                                <a href="#modal-container-131097" data-toggle="modal" style="display: <?php if(isset($_SESSION['username'])){
+                                                    echo "none";
+                                                 }else {
+                                                     echo "unset";
+                                                 }   ?>" class="col-sm-1">Rigister</a>
                                             </li>
                                             <li>
                                                 <a href="#" class="col-sm-1">Something</a>

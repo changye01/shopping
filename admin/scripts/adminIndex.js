@@ -30,6 +30,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#editUsers").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -51,6 +52,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -72,6 +74,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -93,6 +96,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -114,6 +118,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -135,6 +140,7 @@ $(document).ready(function () {
                 $("#listUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -156,6 +162,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -177,6 +184,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -198,6 +206,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -219,6 +228,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -240,6 +250,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -261,6 +272,7 @@ $(document).ready(function () {
                 $("#editUsers").show();
                 $("#listProImgs").hide();
                 $("#listOrders").hide();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -282,6 +294,7 @@ $(document).ready(function () {
                 $("#editUsers").hide();
                 $("#listProImgs").hide();
                 $("#listOrders").show();
+                $("#donelistOrders").hide();
             }
         });
     }
@@ -300,6 +313,7 @@ $(document).ready(function () {
     $("#editUsers").hide();
     $("#listProImgs").hide();
     $("#listOrders").hide();
+    $("#donelistOrders").hide();
     $("#addManager").click(function () {
         $("#main").hide();
         $("#listManagers").hide();
@@ -316,6 +330,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     $("#listManager").click(function () {
         $("#main").hide();
@@ -333,6 +348,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     //
     $("#addCate").click(function () {
@@ -351,6 +367,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     $("#listCate").click(function () {
         $("#editManagers").hide();
@@ -368,6 +385,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     $("#addPro").click(function () {
         $("#editManagers").hide();
@@ -385,6 +403,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     $("#listPro").click(function () {
         $("#editManagers").hide();
@@ -402,6 +421,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     $("#addUser").click(function () {
         $("#editManagers").hide();
@@ -419,6 +439,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     $("#listUser").click(function () {
         $("#editManagers").hide();
@@ -436,6 +457,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     $("#listProImg").click(function () {
         $("#editManagers").hide();
@@ -453,6 +475,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").show();
         $("#listOrders").hide();
+        $("#donelistOrders").hide();
     });
     $("#listOrder").click(function () {
         $("#editManagers").hide();
@@ -470,6 +493,7 @@ $(document).ready(function () {
         $("#editUsers").hide();
         $("#listProImgs").hide();
         $("#listOrders").show();
+        $("#donelistOrders").hide();
     });
     
 });

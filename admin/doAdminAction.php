@@ -57,4 +57,7 @@ if ($act == "logout") {
 }elseif($act=="delOrder"){
     $mes=delOrder($id);
     alertMes($mes,"index.php?listOrders");
+}elseif($act=="doneOrder"){
+    $mes=doneOrder($id);
+    alertMes($mes,"index.php?listOrders");
 }
