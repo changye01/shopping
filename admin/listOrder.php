@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <table class="table table-responsive table-striped table-bordered table-condensed " style="text-align: center">
+    <table class="table table-responsive table-striped table-bordered table-condensed col-md-10" style="text-align: center">
         <tr>
             <td>
                 id

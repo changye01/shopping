@@ -10,16 +10,16 @@
     <meta charset="utf-8">
     <script>
         
-            function delOrder(id){
-                if (window.confirm("确定删除订单? ")) {
-                    window.location="doAdminAction.php?act=delOrder&id="+id;
-                }
-            }
-            function doneOrder(id){
-                if(window.confirm("确定完成订单? ")){
-                    window.location="doAdminAction.php?act=doneOrder&id="+id;
-                }
-            }
+            // function delOrder(id){
+            //     if (window.confirm("确定删除订单? ")) {
+            //         window.location="doAdminAction.php?act=delOrder&id="+id;
+            //     }
+            // }
+            // function doneOrder(id){
+            //     if(window.confirm("确定完成订单? ")){
+            //         window.location="doAdminAction.php?act=doneOrder&id="+id;
+            //     }
+            // }
     </script>
 
 </head>
@@ -51,13 +51,13 @@
             <td>
                 总价
             </td>
-            <td>
+            <!-- <td>
                 action
-            </td>
+            </td> -->
         </tr>
         <tbody>
             <?php $i=1;foreach($rowsOrder as $row):?>
-                 <?php if($row['flag']==0):?>
+                 <?php if($row['flag']==1):?>
             <!-- <form action="editManager.php" method="POST"> -->
             <tr>
                 <td>
@@ -102,11 +102,11 @@
                           echo $totalPrice;
                     ?>
                 </td>
-                <td>
+                <!-- <td> -->
                     <!-- <input type="button" class="btn-link col-sm-6 " value="edit" id="editUser" onclick="editUser(" > -->
-                    <input type="button" class="btn-link col-sm-6  " value="完成订单" id="doneOrder" onclick="doneOrder(<?php echo $row['id'];?>)" >
-                    <input type="button" class="btn-link col-sm-6  " value="删除订单" id="delOrder" onclick="delOrder(<?php echo $row['id'];?>)" >
-                </td>
+                    <!-- <input type="button" class="btn-link col-sm-6  " value="完成订单" id="doneOrder" onclick="doneOrder(<?php echo $row['id'];?>)" >
+                    <input type="button" class="btn-link col-sm-6  " value="删除订单" id="delOrder" onclick="delOrder(<?php echo $row['id'];?>)" > -->
+                <!-- </td> -->
             </tr>
                 <?php endif;?>
             <?php $i++; endforeach;?>

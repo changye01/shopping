@@ -495,5 +495,22 @@ $(document).ready(function () {
         $("#listOrders").show();
         $("#donelistOrders").hide();
     });
-    
+    $("#donelistOrder").click(function () {
+        $("#editManagers").hide();
+        $("#listManagers").hide();
+        $("#addManagers").hide();
+        $("#main").hide();
+        $("#addCate1").hide();
+        $("#listCates").hide();
+        $("#editCates").hide();
+        $("#addPros").hide();
+        $("#listPros").hide();
+        $("#editPros").hide();
+        $("#addUsers").hide();
+        $("#listUsers").hide();
+        $("#editUsers").hide();
+        $("#listProImgs").hide();
+        $("#listOrders").hide();
+        $("#donelistOrders").show();
+    });
 });

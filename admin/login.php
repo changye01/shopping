@@ -42,14 +42,14 @@
                                         <!-- <li>
                                                             <label>welcome:</label>
                                                         </li> -->
-                                        <li>
+                                        <!-- <li>
                                             <a href="#">Another action</a>
                                         </li>
                                         <li>
                                             <a href="#">search</a>
                                         </li>
                                         <li class="divider">
-                                        </li>
+                                        </li> -->
                                         <li>
                                             <a href="#">quit</a>
                                         </li>
@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="verifyPassword" class="col-sm-2 control-label">验证码</label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-3">
                                         <input type="text" class="form-control" id="verifyPassword" name="verifyPassword" />
                                         
                                     </div>

@@ -1,28 +1,7 @@
 <?php
 include_once '../include.php';
 checkLogined();
-// $sql = "select * from shopping_cate";
 
-//     $totalRows = getResultNum($sql);
-//     global $totalPage;
-//     // echo $totalRows;
-//     $pageSize = 3;
-//     // ceil() 函数向上舍入为最接近的整数
-//     $totalPage = ceil($totalRows / $pageSize);
-//     global $page;
-//     @$page = $_REQUEST['page'] ? (int) $_REQUEST['page'] : 1;
-//     if ($page < 1 || $page == null || !is_numeric($page)) {
-//         $page = 1;
-//     }
-//     if ($page > $totalPage) {
-//         $page = $totalPage;
-//     }
-//     $offset = ($page - 1) * $pageSize;
-//     $sql = "SELECT id,cName FROM shopping_cate LIMIT {$offset},{$pageSize}";
-// // $rows = getAllAdmin();
-//     $rows = fetchAll($sql);
-//     $rows1 = &fetchAll($sql);
-//     var_dump($rows1);
 @$page = $_REQUEST['page'] ? (int) $_REQUEST['page'] : 1;
 $rows = getAdminByPage($page, $pageSize = 3);
 
@@ -37,6 +16,7 @@ if (!$rows) {
 
     <head>
         <meta charset="utf-8">
+        <title>电器商城管理员界面</title>
         <link rel="stylesheet" href="styles/backstage.css">
         <link rel="stylesheet" href="scripts/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
         <script src="scripts/jquery-ui/js/jquery-3.3.1.js"></script>
@@ -44,17 +24,12 @@ if (!$rows) {
         <script src="scripts/jquery-ui/js/jquery-ui-1.10.4.custom.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="../plugins/kindeditor/kindeditor.js"></script>
         <script type="text/javascript" charset="utf-8" src="../plugins/kindeditor/lang/zh_CN.js"></script>
-       
         <script src="../plugins/bootstrap.min.js"></script>
         <link rel="stylesheet" href="../plugins/bootstrap.css">
         <style type="css/text">
-            
         </style>
         <script src="./scripts/adminIndex.js"></script>
         <script>
-            $(document).ready(function(){
-                
-            });
         </script>
     </head>
 
@@ -94,14 +69,14 @@ if (!$rows) {
                                         <!-- <li>
                                     <label>welcome:</label>
                                 </li> -->
-                                        <li>
+                                        <!-- <li>
                                             <a href="#">Another action</a>
                                         </li>
                                         <li>
                                             <a href="#">search</a>
-                                        </li>
-                                        <li class="divider">
-                                        </li>
+                                        </li> -->
+                                        <!-- <li class="divider">
+                                        </li> -->
                                         <li>
                                             <a href="doAdminAction.php?act=logout">quit</a>
                                         </li>

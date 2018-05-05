@@ -223,65 +223,7 @@ if(!($rowsCate1&&is_array($rowsCate1))){
                             <div class="col-md-3 column">
                                 <div class="list-group">
                                     <dl class="list-group">
-                                        <dt class="list-group-item active pop" title="" data-toggle="popover" data-placement="right" data-content="<dl>
-                                                    <dd>
-                                                        <a href='#' class='text-muted'>手机通讯 ></a>&nbsp;
-                                                        <a href='#' class='text-muted'>老人机</a>&nbsp;
-                                                        <a href='#' class='text-muted'>游戏手机</a>&nbsp;
-                                                        <a href='#' class='text-muted'>游戏手机</a>&nbsp;
-                                                        <a href='#' class='text-muted'>游戏手机</a>&nbsp;
-                                                        <a href='#' class='text-muted'>游戏手机</a>&nbsp;
-                                                        <a href='#' class='text-muted'>游戏手机</a>&nbsp;
-                                                    </dd>
-                                                </dl>
-                                
-                                                
-                                                <br>
-                                                <dl>
-                                                    <dd>
-                                                        <a href='#' class='text-muted'>手机配件 ></a>&nbsp;
-                                                        <a href='#' class='text-muted'>贴膜</a>&nbsp;
-                                                        <a href='#' class='text-muted'>手机壳</a>&nbsp;
-                                                        <a href='#' class='text-muted'>耳机</a>&nbsp;
-                                                        <a href='#' class='text-muted'>内存卡</a>&nbsp;
-                                                        <a href='#' class='text-muted'>摄像头</a>&nbsp;
-                                                        <a href='#' class='text-muted'>游戏手机</a>&nbsp;
-                                                    </dd>
-                                                </dl>
-                                               
-                                                <br>
-                                                <dl>
-                                                    <dd>
-                                                        <a href='#' class='text-muted'>手机配件 ></a>&nbsp;
-                                                        <a href='#' class='text-muted'>贴膜</a>&nbsp;
-                                                        <a href='#' class='text-muted'>手机壳</a>&nbsp;
-                                                        <a href='#' class='text-muted'>耳机</a>&nbsp;
-                                                        <a href='#' class='text-muted'>内存卡</a>&nbsp;
-                                                        <a href='#' class='text-muted'>摄像头</a>&nbsp;
-                                                        <a href='#' class='text-muted'>游戏手机</a>&nbsp;
-                                                    </dd>
-                                                </dl>
-                                               
-                                                <br>
-                                                <dl>
-                                                    <dd>
-                                                        <a href='#' class='text-muted'>手机配件 ></a>&nbsp;
-                                                        <a href='#' class='text-muted'>贴膜</a>&nbsp;
-                                                        <a href='#' class='text-muted'>手机壳</a>&nbsp;
-                                                        <a href='#' class='text-muted'>耳机</a>&nbsp;
-                                                        <a href='#' class='text-muted'>内存卡</a>&nbsp;
-                                                        <a href='#' class='text-muted'>摄像头</a>&nbsp;
-                                                        <a href='#' class='text-muted'>游戏手机</a>&nbsp;
-                                                    </dd>
-                                                </dl>
-                                
-                                               
-                                                <br>
-                                                
-                                                
-                                                
-                                                
-                                                ">
+                                        <dt class="list-group-item active" title="">
                                             <h4>
                                                 <a href="#" style="color: white;"> 手机/通讯/数码</a>&nbsp; &nbsp;
                                             </h4>
