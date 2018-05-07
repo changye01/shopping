@@ -1,5 +1,5 @@
 <?php
-@$rowsOrder = getOrderByPage($page, $pageSize = 3);
+@$rowsOrder = getOrderByPage($page, $pageSize = 7);
 // var_dump($rowsUser);
 // var_dump($rowsOrder)
 ?>

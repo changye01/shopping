@@ -95,3 +95,8 @@ function getAllCate()
     $rowsCate1 = &fetchAll($sql);
     return $rowsCate1;
 }
+function getCateById($id){
+    $sql="SELECT cName from shopping_cate where id={$id}";
+    $row=fetchOne($sql);
+    return $row;
+}

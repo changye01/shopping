@@ -32,9 +32,15 @@ print_r($row);
             </div>
         </div>
         <div class="form-group">
+            <label for="location" class="col-sm-2 control-label">location</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="location" placeholder="please input user location" value="<?php echo $row['location'];?>" />
+            </div>
+        </div>
+        <div class="form-group">
             <label for="email" class="col-sm-2 control-label">E-mail</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" value="<?php echo $row['username'];?>" placeholder="please input user email" name="email" />
+                <input type="email" class="form-control" value="<?php echo $row['email'];?>" placeholder="please input user email" name="email" />
             </div>
         </div>
         <div class="form-group">

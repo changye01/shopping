@@ -1,5 +1,5 @@
 <?php
-$rowsUser = getUserByPage($page, $pageSize = 3);
+$rowsUser = getUserByPage($page, $pageSize =20);
 // var_dump($rowsUser);
 ?>
 <!doctype html>
@@ -7,13 +7,7 @@ $rowsUser = getUserByPage($page, $pageSize = 3);
 
 <head>
     <meta charset="utf-8">
-
-    <!-- <script src="../../plugins/jquery-3.3.1.js"></script>
-    <script src="../../plugins/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="../../plugins/bootstrap.css"> -->
-    <script>
-        
+    <script>    
             function editUser(id){
                 window.location="index.php?editUsers&id="+id;
             }
@@ -21,21 +15,7 @@ $rowsUser = getUserByPage($page, $pageSize = 3);
                 if (window.confirm("Are you sure you want to delete? ")) {
                     window.location="doAdminAction.php?act=delUser&id="+id;
                 }
-            }
-            // $(document).ready(function(){
-            //     $(".delManager").click(function EventHandler(e){
-            //         id1=e.currentTarget.id;
-            //         id2=id1.substr(10,id1.length);
-            //         console.log(id2);
-            //         $.post("doAdminAction.php",{
-            //             id:id2,
-            //             act:"delAdmin"
-            //         },function(data,status){
-            //             // alert();
-            //         });
-            //     });
-            // });
-    
+            } 
     </script>
 
 </head>
@@ -54,6 +34,9 @@ $rowsUser = getUserByPage($page, $pageSize = 3);
             </td>
             <td>
                 是否激活
+            </td>
+            <td>
+                送货地址
             </td>
             <td>
                 action
@@ -81,6 +64,9 @@ $rowsUser = getUserByPage($page, $pageSize = 3);
                     <?php echo $row['activeFlag']==0?'未激活':'激活';?>
                 </td>
                 <td>
+                    <?php echo $row['location'];?>
+                </td>
+                <td>
                     <input type="button" class="btn-link col-sm-6 " value="edit" id="editUser" onclick="editUser(<?php echo $row['id'];?>)" >
                     <input type="button" class="btn-link col-sm-6 delUser" value="delete" id="delUser" onclick="delUser(<?php echo $row['id'];?>)" >
                 </td>
@@ -89,7 +75,7 @@ $rowsUser = getUserByPage($page, $pageSize = 3);
             <!-- </form> -->
             <?php if($totalRowsUser>$pageSize):?>
             <tr>
-                <td colspan="4"><?php echo showPage($page,$totalPageUser,"#listUsers")?></td>
+                <td colspan="6"><?php echo showPage($page,$totalPageUser,"#listUsers")?></td>
             </tr>
             <?php endif;?>
         </tbody>

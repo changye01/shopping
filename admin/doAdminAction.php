@@ -60,4 +60,10 @@ if ($act == "logout") {
 }elseif($act=="doneOrder"){
     $mes=doneOrder($id);
     alertMes($mes,"index.php?listOrders");
+}elseif($act=="updateUser"){
+    $mes=editUser($id);
+    alertMes($mes,"../index.php");
+}elseif($act=="cancelOrder"){
+    $mes=cancelOrder($id);
+    alertMes($mes,"../index.php");
 }

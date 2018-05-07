@@ -101,7 +101,7 @@ function getUserByPage($page, $pageSize = 3)
         $page = $totalPageUser;
     }
     $offset = ($page - 1) * $pageSize;
-    $sql = "SELECT id,username,email,activeFlag FROM shopping ORDER BY id LIMIT {$offset},{$pageSize}";
+    $sql = "SELECT * FROM shopping ORDER BY id LIMIT {$offset},{$pageSize}";
     // $rows = getAllAdmin();
     $rowsUser = &fetchAll($sql);
     return $rowsUser;

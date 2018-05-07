@@ -107,7 +107,7 @@ function fetchOne($sql, $result_type = MYSQLI_ASSOC)
             return $row;
         }
     } else {
-        echo "0结果";
+        echo null;
     }
 }
 

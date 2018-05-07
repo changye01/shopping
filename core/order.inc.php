@@ -65,11 +65,20 @@ function delOrder($id){
 function doneOrder($id){
     $where="id={$id}";
     $arr['flag']=1;
-    $sql="UPDATE shopping_order set flag=1 where id={$id}"; 
-    $row=fetchOne($sql);
-    if($row!=-1){
-        $mes="success";
+    if(update("shopping_order",$arr,$where)!=-1) {
+        $mes="订单已完成";
     }else{
-        $mes="failed";
+        $mes="订单申请完成失败，请重新申请";
     }
+   return $mes;
+}
+function cancelOrder($id){
+    $where="id={$id}";
+    $arr['applyCancel']=1;
+    if(update("shopping_order",$arr,$where)!=-1) {
+        $mes="订单申请取消成功";
+    }else{
+        $mes="订单申请取消失败，请重新申请";
+    }
+   return $mes;
 }

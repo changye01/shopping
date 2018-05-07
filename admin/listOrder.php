@@ -1,5 +1,5 @@
 <?php
-@$rowsOrder = getOrderByPage($page, $pageSize = 3);
+@$rowsOrder = getOrderByPage($page, $pageSize = 7);
 // var_dump($rowsUser);
 // var_dump($rowsOrder)
 ?>
@@ -52,9 +52,12 @@
                 总价
             </td>
             <td>
+                用户申请取消
+            </td>
+            <td>
                 action
             </td>
-        </tr>
+        </td>
         <tbody>
             <?php $i=1;foreach($rowsOrder as $row):?>
                  <?php if($row['flag']==0):?>
@@ -100,6 +103,10 @@
                 <td>
                     <?php $totalPrice=$row['price']*$row['num'];
                           echo $totalPrice;
+                    ?>
+                </td>
+                <td>
+                    <?php echo $row['applyCancel']==1?"是":"否";
                     ?>
                 </td>
                 <td>

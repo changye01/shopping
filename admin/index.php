@@ -126,7 +126,7 @@ if (!$rows) {
                                 <div class="panel-body">
                                     <a href="#listProImgs" id="listProImg" style="color: #505254;">商品图片列表</a>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -192,7 +192,7 @@ if (!$rows) {
                         <?php include_once './addCate.php'?>
                     </div>
                     <div id="listCates">
-                        <?php include_once './listCate.php'?>
+                    <?php include_once './listCate.php'?>
                     </div>
                     <div id="editCates">
                         <?php include_once './editCate.php'?>
@@ -210,7 +210,7 @@ if (!$rows) {
                         <?php include_once './addUser.php'?>
                     </div>
                     <div id="listUsers">
-                        <?php include_once './listUser.php'?>
+                        <?php include_once  './listUser.php'?>
                     </div>
                     <div id="editUsers">
                         <?php include_once './editUser.php'?>
@@ -223,7 +223,7 @@ if (!$rows) {
                     </div>
                     <div id="donelistOrders">
                         <?php include_once './donelistOrders.php'?>
-                    </div>          
+                    </div>
                 </div>
             </div>
         </div>

@@ -175,6 +175,12 @@ function delUser($id)
     }
     return $mes;
 }
+/**
+ * 更新用户
+ *
+ * @param [int] $id
+ * @return string
+ */
 function editUser($id)
 {
     $arr = $_POST;

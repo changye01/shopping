@@ -104,7 +104,6 @@ function change(val) {
 							<th style="text-align: center;">编号</th>
 							<th style="text-align: center;">商品名称</th>
 							<th style="text-align: center;">商品分类</th>
-							
 							<th style="text-align: center;">是否上架</th>
 							<th style="text-align: center;">商品价格</th>
 							<th style="text-align: center;">上架时间</th>
@@ -117,7 +116,7 @@ function change(val) {
 							<!--这里的id和for里面的c1 需要循环出来-->
 							<td>
 								<input type="checkbox" id="c1<?php echo $row['id'];?>" class="checkbox col-lg-1" value="<?php echo $row['id'];?>">
-								<label for="c1<?php echo $row['id'];?>" class="col-lg-11"><?php echo $i;?></label>
+								<label for="c1<?php echo $row['id'];?>" class="col-lg-11"><?php echo $row['id'];?></label>
 							</td>
 							<td style="text-align: center;">
 								<?php echo $row['pName'];?>
@@ -184,7 +183,7 @@ function change(val) {
 														</td>
 													</tr>
 													<tr>
-														<td width="20%" align="center">幕课网价格</td>
+														<td width="20%" align="center">本平台价格</td>
 														<td>
 															<?php echo $row['iPrice'];?>
 														</td>
