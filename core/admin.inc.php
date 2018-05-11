@@ -134,44 +134,52 @@ function logout()
  *
  * @return string
  */
-function addUser(){
-    $arr=$_POST;
-	$arr['password']=md5($_POST['password']);
-	$arr['regTime']=time();
-	$uploadFile=uploadFile("../uploads/");
-	
+function addUser()
+{
+    $arr = $_POST;
+    $arr['password'] = md5($_POST['password']);
+    $arr['regTime'] = time();
+    $uploadFile = uploadFile("../uploads/");
+
     // print_r($uploadFile);
     // exit;
-	if($uploadFile&&is_array($uploadFile)){
-		$arr['face']=$uploadFile[0]['name'];
-	}else{
-		$mes= "注册失败";
-	}
-	// print_r($arr);exit;
-	if(insert("shopping", $arr)){
-		$mes="注册成功!";
-	}else{
-		$filename="../uploads/".$uploadFile[0]['name'];
-		if(file_exists($filename)){
-			unlink($filename);
-		}
-		$mes="注册失败!";
-	}
-	return $mes;
+    if ($uploadFile && is_array($uploadFile)) {
+        $arr['face'] = $uploadFile[0]['name'];
+    } else {
+        $mes = "注册失败";
+    }
+    // print_r($arr);exit;
+    if (insert("shopping", $arr)) {
+        $mes = "注册成功!";
+    } else {
+        $filename = "../uploads/" . $uploadFile[0]['name'];
+        if (file_exists($filename)) {
+            unlink($filename);
+        }
+        $mes = "注册失败!";
+    }
+    return $mes;
 }
 function delUser($id)
 {
-    $sql="SELECT face from shopping where id=".$id;
-    $row=fetchOne($sql);
-    $face=$row['face'];
-    if(file_exists("../uploads/".$face)){
-        unlink("../uploads/".$face);
-    }
-    if (delete("shopping", "id={$id}") != -1) {
-        $mes = "delete success";
+    $sqlOrder = "SELECT * from shopping_order where uid={$id}";
+    $rowOrder = fetchAll($sqlOrder);
+    if (!$rowOrder) {
+        $sql = "SELECT face from shopping where id=" . $id;
+        $row = fetchOne($sql);
+        $face = $row['face'];
+        if (file_exists("../uploads/" . $face)) {
+            unlink("../uploads/" . $face);
+        }
+        if (delete("shopping", "id={$id}") != -1) {
+            $mes = "delete success";
 
-    } else {
-        $mes = "delete failed";
+        } else {
+            $mes = "delete failed";
+        }
+        // return $mes;
+    }else{
+        alertMes("不能删除此用户，此用户下有订单，请先删除订单","../admin/index?listOrders");
     }
     return $mes;
 }
@@ -185,12 +193,11 @@ function editUser($id)
 {
     $arr = $_POST;
     // $sql=""
-    // $arr['password'] = md5($_POST['password']);
-    if (update("shopping", $arr, "id={$id}") != -1) {
+    $arr['password'] = md5($_POST['password']);
+    if (update("shopping", $arr, "id={$id}")) {
         $mes = "update success";
     } else {
         $mes = "update failed";
     }
     return $mes;
-
 }

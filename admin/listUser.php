@@ -1,5 +1,5 @@
 <?php
-$rowsUser = getUserByPage($page, $pageSize =20);
+$rowsUser = getUserByPage($page, $pageSize =30);
 // var_dump($rowsUser);
 ?>
 <!doctype html>
@@ -21,12 +21,12 @@ $rowsUser = getUserByPage($page, $pageSize =20);
 </head>
 
 <body>
-    <table class="table table-responsive table-striped table-bordered table-condensed " style="text-align: center">
+    <table class="table table-striped table-bordered table-condensed " style="text-align: center">
         <tr>
-            <td>
+            <td class="col-lg-1">
                 id
             </td>
-            <td>
+            <td class="col-md-2">
                 userName
             </td>
             <td>
@@ -43,6 +43,7 @@ $rowsUser = getUserByPage($page, $pageSize =20);
             </td>
         </tr>
         <tbody>
+        <?php if($rowsUser):?>
             <?php $i=1;foreach($rowsUser as $row):?>
             <!-- <form action="editManager.php" method="POST"> -->
             <tr>
@@ -72,6 +73,7 @@ $rowsUser = getUserByPage($page, $pageSize =20);
                 </td>
             </tr>
             <?php $i++; endforeach;?>
+        <?php endif;?>
             <!-- </form> -->
             <?php if($totalRowsUser>$pageSize):?>
             <tr>

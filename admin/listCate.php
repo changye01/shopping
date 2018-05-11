@@ -27,21 +27,21 @@ $rowsCate = getCateByPage($page, $pageSize = 3);
 </head>
 
 <body>
-    <table class="table table-responsive table-striped table-bordered table-condensed " style="text-align: center">
+    <table class="table table-responsive table-striped  table-condensed " style="text-align: center">
         <tr>
-            <td>
+            <td class="col-sm-2">
                 id
             </td>
-            <td>
+            <td class="col-sm-2">
                 Category
             </td>
-            <td>
+            <td class="col-sm-4">
                 action
             </td>
             
         </tr>
         <tbody>
-
+            <?php if($rowsCate):?>
             <?php
             // $rows=getCateByPage($pageSize=3);
             $i=1;foreach($rowsCate as $row):?>
@@ -65,10 +65,11 @@ $rowsCate = getCateByPage($page, $pageSize = 3);
                 </td>
             </tr>
             <?php $i++; endforeach;?>
+             <?php endif;?>
             <!-- </form> -->
             <?php if($totalRowsCate>$pageSize):?>
             <tr>
-                <td colspan="2"><?php echo showPage($page,$totalPageCate,"#listCates")?></td>
+                <td colspan="3"><?php echo showPage($page,$totalPageCate,"#listCates")?></td>
             </tr>
             <?php endif;?>
         </tbody>

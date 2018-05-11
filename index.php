@@ -23,29 +23,37 @@ $sql1="SELECT * from shopping_order where uid={$id}";
     <title>木木电器商城</title>
     <script src="./plugins/jquery-3.3.1.js"></script>
     <script src="./plugins/bootstrap.min.js"></script>
+    <script src="./plugins/jquery.validate.js"></script>
+    <script src="./scripts/myValidate.js"></script>
     <link rel="stylesheet" href="./plugins/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="styles/main.css">
     <style>
+    /* #region */
         .popover {
             width: auto;
             max-width: 870px;
             height: auto;
         }
+        .error{
+            color:red;
+        }
+    /* #endregion */
     </style>
     <script>
-        function cancelOrder(id){
+        function cancelOrder(id) {
             if (window.confirm("确定申请取消订单吗? ")) {
-                window.location="./admin/doAdminAction.php?act=cancelOrder&id="+id;
+                window.location = "./admin/doAdminAction.php?act=cancelOrder&id=" + id;
             }
         }
     </script>
-    
+
 </head>
 
 <body>
     <div class="container">
         <div class="row clearfix">
             <div class="col-md-12 column">
+                <!-- 导航栏start -->
                 <div class="row clearfix">
                     <div class="col-md-12 column">
                         <nav class="navbar navbar-default" role="navigation">
@@ -104,7 +112,7 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                                                      echo "none ";
                                                  }   ?>">我的订单</a>
                                             </li>
-                                            
+
                                             <li>
                                                 <a href="./admin/doAdminAction?act=userOut" style="display: <?php if(isset($_SESSION['username'])){
                                                     echo " unset ";
@@ -120,6 +128,7 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                         </nav>
                     </div>
                 </div>
+                <!-- 导航栏end -->
                 <!-- 登陆窗体 start -->
                 <div class="modal fade" id="modal-container-131096" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -172,18 +181,24 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <form role="form" action="./admin/doAdminAction.php?act=reg" method="POST" enctype="multipart/form-data">
+                            <!-- ./admin/doAdminAction.php?act=reg -->
+                                <form role="form" action="./test.php" method="POST" enctype="multipart/form-data" class=""
+                                    id="register">
                                     <div class="form-group">
                                         <label for="username1">username</label>
                                         <input type="text" name="username" class="form-control" id="username1" />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="">
                                         <label for="exampleInputPassword1">Password</label>
                                         <input type="password" class="form-control" name="password" id="exampleInputPassword1" />
                                     </div>
                                     <div class="form-group">
+                                        <label for="exampleInputPassword1">confirmPassword</label>
+                                        <input type="password" class="form-control" name="confirmPassword" id="exampleInputPassword2" />
+                                    </div>
+                                    <div class="form-group">
                                         <label for="email1">Email address</label>
-                                        <input type="email" class="form-control" id="email1" />
+                                        <input type="email" class="form-control" id="email1" name="email"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="location">location</label>
@@ -211,7 +226,7 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" />同意本公司的什莫什莫条款</label>
+                                            <input type="checkbox" name="agree"/>同意本公司的什莫什莫条款</label>
                                     </div>
                                     <button type="submit" class="btn  btn-default">Submit</button>
                                 </form>
@@ -239,35 +254,36 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                             </div>
                             <div class="modal-body">
                                 <form role="form" action="./admin/doAdminAction.php?act=updateUser&id=<?php echo ($_SESSION['loginFlag'])?>" method="POST"
-                                    enctype="multipart/form-data">
+                                    enctype="multipart/form-data" id="updateUser" class="">
 
                                     <div class="form-group">
                                         <label for="username1">username</label>
-                                        <input type="text" name="username" class="form-control" id="username1" value="<?php echo $userInfo['username']?>" />
+                                        <input type="text" name="username" class="form-control" id="username2" value="<?php echo $userInfo['username']?>" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" name="password" id="exampleInputPassword1" value="<?php echo $userInfo['password']?>"
+                                        <label for="exampleInputPassword3">Password</label>
+                                        <input type="password" class="form-control" name="password" id="exampleInputPassword3" value="<?php echo $userInfo['password']?>"
                                         />
                                     </div>
                                     <div class="form-group">
-                                        <label for="email1">Email address</label>
-                                        <input type="email" class="form-control" id="email1" value="<?php echo $userInfo['email']?>" />
+                                        <label for="location2">location</label>
+                                        <input type="text" name="location" class="form-control" id="location2" value="<?php echo $userInfo['location']?>" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="location">location</label>
-                                        <input type="text" name="location" class="form-control" id="location" value="<?php echo $userInfo['location']?>" />
+                                        <label for="email2">Email address</label>
+                                        <input type="email" class="form-control" id="email2" value="<?php echo $userInfo['email']?>" name="email"/>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label>Sex</label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="sex" id="sex1" value="1" checked>男
+                                            <input type="radio" name="sex" value="1" checked>男
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="sex" id="sex2" value="2">女
+                                            <input type="radio" name="sex" value="2">女
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="sex" id="sex3" value="3">保密
+                                            <input type="radio" name="sex" value="3">保密
                                         </label>
                                     </div>
                                     <button type="submit" class="btn  btn-default">Submit</button>
@@ -296,38 +312,39 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <table class="table table-responsive table-striped table-bordered table-condensed col-md-10" style="text-align: center">
+                                <table class="table  table-striped table-bordered table-condensed col-lg-7" style="text-align: center">
                                     <tr>
-                                        
-                                        <td>
+
+                                        <td class="col-sm-2">
                                             商品名
                                         </td>
-                                        <td>
+                                        <td class="col-sm-1">
                                             商品颜色
                                         </td>
                                         <td>
                                             数量
                                         </td>
-                                        <td>
+                                        <td class="col-sm-2">
                                             送货地址
                                         </td>
-                                        
+
                                         <td>
                                             总价
                                         </td>
                                         <td>
                                             是否完成
                                         </td>
-                                        <td>
+                                        <td class="col-sm-3">
                                             action
                                         </td>
                                     </tr>
                                     <tbody>
-                                        <?php $i=1;foreach(@$orderInfo as $row):?>
-                                        
+                                        <?php $i=1;
+                                        if($orderInfo):foreach($orderInfo as $row):?>
+
                                         <!-- <form action="editManager.php" method="POST"> -->
                                         <tr>
-                                            
+
                                             <td>
                                                 <?php 
                                                     $proName=getProByOrderPid($row['pid']);
@@ -346,7 +363,7 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                                             <td>
                                                 <?php echo $row['location']?>
                                             </td>
-                                            
+
                                             <td>
                                                 <?php $totalPrice=$row['price']*$row['num'];
                                                     echo $totalPrice;
@@ -363,7 +380,7 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                                             </td>
                                             <td>
 
-                                                <input type="button" class="btn-link col-sm-6  " value="取消订单" style="display: <?php 
+                                                <input type="button" class="btn-link  " value="取消订单" style="display: <?php 
                                                 if($row["flag"]==0&&$row['applyCancel']==0){
                                                     echo "unset";
                                                 }else{
@@ -371,13 +388,13 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                                                 }
                                                 ?>" id="cancelOrder" onclick="cancelOrder(<?php echo $row['id'];?>)">
                                             </td>
-                                        </tr>                                        
-                                        <?php $i++; endforeach;?>
+                                        </tr>
+                                        <?php $i++; endforeach;endif;?>
                                         <!-- </form> -->
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="modal-footer">                                
+                            <div class="modal-footer">
                             </div>
                         </div>
                     </div>
@@ -499,6 +516,7 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                         </div>
                     </div>
                 </div>
+                <!-- 主页界面start -->
                 <div class="row clearfix">
                     <div class="col-md-12 column">
                         <?php $i=800;foreach($rowsCate1 as $row):?>
@@ -682,6 +700,7 @@ $sql1="SELECT * from shopping_order where uid={$id}";
                         <?php $i++;endforeach;?>
                     </div>
                 </div>
+                <!-- 主页界面end -->
             </div>
         </div>
     </div>

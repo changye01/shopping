@@ -5,9 +5,14 @@
  * @return string
  */
 function reg(){
-	$arr=$_POST;
+	$arr['username']=$_POST['username'];
+	$arr['location']=$_POST['location'];
+	$arr['username']=$_POST['username'];
+	$arr['sex']=$_POST['sex'];
+	$arr['email']=$_POST['email'];
 	$arr['password']=md5($_POST['password']);
 	$arr['regTime']=time();
+	
 	$uploadFile=uploadFile("../uploads/");
 	
     // print_r($uploadFile);
@@ -63,13 +68,15 @@ function login(){
  * @return void
  */
 function userOut(){
+	$url=$_SERVER['HTTP_REFERER'];
+	print_r($url);
 	$_SESSION=array();
 	if(isset($_COOKIE[session_name()])){
 		setcookie(session_name(),"",time()-1);
 	}
 
 	session_destroy();
-	header("location:../index.php");
+	header("location:$url");
 }
 // function checkLoginedUser(){
 //     if (@$_SESSION['adminId'] == "") {

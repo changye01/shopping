@@ -56,6 +56,7 @@
             </td> -->
         </tr>
         <tbody>
+            
             <?php $i=1;foreach($rowsOrder as $row):?>
                  <?php if($row['flag']==1):?>
             <!-- <form action="editManager.php" method="POST"> -->
@@ -110,6 +111,7 @@
             </tr>
                 <?php endif;?>
             <?php $i++; endforeach;?>
+                    
             <!-- </form> -->
             <?php if($totalRowsOrder>$pageSize):?>
             <tr>

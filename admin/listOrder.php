@@ -59,6 +59,7 @@
             </td>
         </td>
         <tbody>
+            <?php if($rowsOrder):?>
             <?php $i=1;foreach($rowsOrder as $row):?>
                  <?php if($row['flag']==0):?>
             <!-- <form action="editManager.php" method="POST"> -->
@@ -74,18 +75,20 @@
                 <td>
                     <?php 
                         $proName=getProByOrderPid($row['pid']);
-                        foreach($proName as $val){
-                            echo $val;
-                        }
+                        
+                        echo $proName['pName'];
+                        // var_dump($proName);
                     ?>
                 </td>
                 <td>
                     <?php 
                         $username=getUserByOrderUid($row['uid']);
                         // var_dump($username);
-                        foreach($username as $val){
-                            echo $val;
-                        }
+                        echo $username['username'];
+                        // foreach($username as $val){
+                        //     echo $val;
+                        // }
+                        // echo $username[]
                     ?>
                 </td>
                 <td>
@@ -117,6 +120,7 @@
             </tr>
                 <?php endif;?>
             <?php $i++; endforeach;?>
+                    <?php endif;?>
             <!-- </form> -->
             <?php if($totalRowsOrder>$pageSize):?>
             <tr>

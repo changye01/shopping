@@ -40,12 +40,13 @@ if ($act == "logout") {
     $mes=reg();
     alertMes($mes,"../index.php");
 }elseif($act=="login"){
+    $url=$_SERVER['HTTP_REFERER'];
     $mes=login();
-    alertMes($mes,"../index.php");
+    alertMes($mes,"$url");
 }elseif($act=="delUser"){
     $mes=delUser($id);
     alertMes($mes,"index.php?listUsers");
-}elseif($act=="editUser"){
+}elseif($act=="editUser"){   
     $mes=editUser($id);
     alertMes($mes,"index.php?listUsers");
 }elseif($act=="userOut"){
@@ -61,8 +62,9 @@ if ($act == "logout") {
     $mes=doneOrder($id);
     alertMes($mes,"index.php?listOrders");
 }elseif($act=="updateUser"){
+    $url=$_SERVER['HTTP_REFERER'];
     $mes=editUser($id);
-    alertMes($mes,"../index.php");
+    alertMes($mes,"$url");
 }elseif($act=="cancelOrder"){
     $mes=cancelOrder($id);
     alertMes($mes,"../index.php");

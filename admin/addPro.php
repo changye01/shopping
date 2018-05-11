@@ -74,14 +74,17 @@ if(!$rowsCate1){
 						</td>
 						<td>
 							<select name="cId" class="form-control">
+								<?php if($rowsCate1):?>
 								<?php
+								
 								foreach($rowsCate1 as $row){
 								?>
 									<option value="<?php echo $row['id'];?>">
 										<?php echo $row['cName'];?>
 									</option>
 
-								<?php  }?>
+								<?php  };?>
+								<?php endif;?>
 							</select>
 						</td>
 

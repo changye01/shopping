@@ -3,7 +3,7 @@ include_once '../include.php';
 checkLogined();
 
 @$page = $_REQUEST['page'] ? (int) $_REQUEST['page'] : 1;
-$rows = getAdminByPage($page, $pageSize = 3);
+@$rows = getAdminByPage($page, $pageSize = 3);
 
 
 if (!$rows) {
@@ -16,7 +16,7 @@ if (!$rows) {
 
     <head>
         <meta charset="utf-8">
-        <title>电器商城管理员界面</title>
+        <title>木木电器商城管理员界面</title>
         <link rel="stylesheet" href="styles/backstage.css">
         <link rel="stylesheet" href="scripts/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
         <script src="scripts/jquery-ui/js/jquery-3.3.1.js"></script>
