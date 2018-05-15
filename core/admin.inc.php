@@ -194,7 +194,7 @@ function editUser($id)
     $arr = $_POST;
     // $sql=""
     $arr['password'] = md5($_POST['password']);
-    if (update("shopping", $arr, "id={$id}")) {
+    if (update("shopping", $arr, "id={$id}")!=-1) {
         $mes = "update success";
     } else {
         $mes = "update failed";

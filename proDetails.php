@@ -9,14 +9,18 @@ $proImgs = getProImgsById($id);
 $sql = "SELECT location from shopping where id={$sessionId}";
 @$location = fetchOne($sql);
 // var_dump($location);
-@$id = $_SESSION['loginFlag'];
+// @$id = $_SESSION['loginFlag'];
 // var_dump($id);
-$sql = "SELECT * from shopping where id={$id}";
+$sql = "SELECT * from shopping where id={$sessionId}";
 @$userInfo = fetchOne($sql);
-$sql1 = "SELECT * from shopping_order where uid={$id}";
+$sql1 = "SELECT * from shopping_order where uid={$sessionId}";
 // var_dump($userInfo);
 // var_dump($_SESSION['loginFlag'])
 @$orderInfo = fetchAll($sql1);
+$sqlCart="SELECT * FROM shopping_cart where uid={$sessionId}";
+//购物车信息
+@$cartInfo=fetchAll($sqlCart);
+// var_dump($cartInfo);
 if (!($proImgs && is_array($proImgs))) {
     alertMes("商品图片错误", "index.php");
 }
@@ -41,6 +45,29 @@ if (!($proImgs && is_array($proImgs))) {
                 window.location="./admin/doAdminAction.php?act=cancelOrder&id="+id;
             }
         }
+        // $("#modal-container-131010").modal('show');
+        function cancelCart(id){
+            // console.log(id);
+            $.ajax({
+                type:"post",
+                url:'./admin/doAdminAction.php?act=cancelCart&id='+id,
+                // data:$('#order').serialize(),
+                async:true,
+                success:function(data,textStatus,jqXHR){
+                    var data1=$.trim(data);
+                    alert(data1);
+                    var url=window.location.href;
+                    // $("#modal-container-131010").modal('show');
+                    window.location.reload();
+                    console.log(data);
+                    
+                },
+                error:function(mes){
+                    console.log(mes);
+                }
+            });
+        }
+        
         $(document).ready(function () {
                 $('.jqzoom').jqzoom({
                     zoomType: 'standard',
@@ -51,9 +78,40 @@ if (!($proImgs && is_array($proImgs))) {
                     zoomWidth: 410,
                     zoomHeight: 410
                 });
-
+                $("#Cart").click(function(){
+                    // var id=1;
+                    var id=$('#Cart').attr('postid');
+                    // console.log(id); 
+                    $.ajax({
+                        type:"post",
+                        url:'./admin/doAdminAction.php?act=addCart&id='+id,
+                        data:$('#order').serialize(),
+                        //异步刷新，默认false同步刷新
+                        async:true,
+                        success:function(data,textStatus,jqXHR){
+                            var data1=$.trim(data);
+                            // opener.location.reload();
+                            window.location.reload();
+                            alert(data1);
+                        },
+                        error:function(mes){
+                            console.log(mes);
+                        }
+                    })
+                });
+                //hidden时清除弹窗数据
+                
+                // $("#modal-container-131010").on("hidden",function(){
+                //     $(this).removeData("modal");
+                // })
             });
+        
         </script>
+        <style>
+            .error{
+                color:red;
+            }
+        </style>
     </head>
 
     <body>
@@ -79,7 +137,7 @@ if (!($proImgs && is_array($proImgs))) {
                                             <ul class="nav navbar-nav navbar-right">
 
                                                 <li class="dropdown">
-                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">hello:
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="menu">hello:
                                                         <?php
                                                         if (isset($_SESSION['username'])) {
                                                             echo $_SESSION['username'];
@@ -119,7 +177,13 @@ if (!($proImgs && is_array($proImgs))) {
                                                                 echo "none ";
                                                             }?>">我的订单</a>
                                                         </li>
-
+                                                        <li>
+                                                            <a href="#modal-container-131010" data-toggle="modal" style="display: <?php if (isset($_SESSION['username'])) {
+                                                                echo " unset ";
+                                                            } else {
+                                                                echo "none ";
+                                                            }?>">我的购物车</a>
+                                                        </li>        
                                                         <li>
                                                             <a href="./admin/doAdminAction?act=userOut" style="display: <?php if (isset($_SESSION['username'])) {
                                                                 echo " unset ";
@@ -208,7 +272,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="location">location</label>
-                                                    <input type="text" name="location" class="form-control" id="location" />
+                                                    <input type="text" name="location" class="form-control" id="location" placeholder="该地址是您的送货地址，请输入详细地址"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Sex</label>
@@ -273,7 +337,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="location2">location</label>
-                                                    <input type="text" name="location" class="form-control" id="location2" value="<?php echo $userInfo['location'] ?>" />
+                                                    <input type="text" name="location" class="form-control" id="location2" value="<?php echo $userInfo['location'] ?>" placeholder="该地址是您的送货地址，请输入详细地址"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email2">Email address</label>
@@ -405,6 +469,89 @@ if (!($proImgs && is_array($proImgs))) {
                                 </div>
                             </div>
                             <!-- 用户个人订单end -->
+                            <!-- 用户个人购物车start -->
+                            <div class="modal fade" id="modal-container-131010" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <?php ?>
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                我的购物车
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table  table-striped table-bordered table-condensed col-lg-7" style="text-align: center">
+                                                <tr>
+                                                    <td></td>
+                                                    <td class="col-sm-2">
+                                                        商品名
+                                                    </td>
+                                                    <td class="col-sm-1">
+                                                        商品颜色
+                                                    </td>
+                                                    <td>
+                                                        数量
+                                                    </td>
+                                                    <td class="col-sm-2">
+                                                        送货地址
+                                                    </td>
+                                                    <td>
+                                                        总价
+                                                    </td>
+                                                    
+                                                    <td class="col-sm-3">
+                                                        action
+                                                    </td>
+                                                </tr>
+                                                <tbody>
+                                                <?php if($cartInfo):?>
+                                                    <?php $i=1;foreach(@$cartInfo as $row):?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php $proImg=getProImgById($row['pid']);
+                                                            ?>
+                                                            <img src="./image_50/<?php echo $proImg['albumPath'];?>" style="width:50px;height: 50px">
+                                                        </td>
+                                                        <td>
+                                                            <?php 
+                                                                $proName=getProByOrderPid($row['pid']);
+                                                                // var_dump($proName);
+                                                                echo $proName['pName'];
+                                                            ?>
+                                                        </td>
+
+                                                        <td>
+                                                            <?php echo $row['color']?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $row['num'];?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $row['location']?>
+                                                        </td>
+
+                                                        <td>
+                                                            <?php $totalPrice=$row['price']*$row['num'];
+                                                                echo $totalPrice;
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <input type="button" class="btn-link cancelCart" value="删除"  id="cancelCart" onclick="cancelCart(<?php echo $row["id"];?>)">
+                                                        </td>
+                                                    </td>
+                                                    <?php $i++; endforeach;?>
+                                                        <?php endif;?>
+                                                    <!-- </form> -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 用户个人订单end -->
                         <!-- 发起订单start -->
                         <div class="row clearfix">
                             <div class="userPosition comWidth col-md-4">
@@ -469,12 +616,13 @@ if (!($proImgs && is_array($proImgs))) {
                                                 </div>
                                             </div>
                                             <!-- 提交表单start  -->
-                                            <form class="form-horizontal" role="form" action="./admin/doAdminAction.php?act=addOrder&id=<?php echo $proInfo['id'] ?>"
-                                                method="POST">
+                                            <form class="form-horizontal" id="order" role="form" action="./admin/doAdminAction.php?act=addOrder&id=<?php echo $proInfo['id'] ?>"
+                                                method="POST" >
+                                                <!-- ./admin/doAdminAction.php?act=addOrder&id=<?php echo $proInfo['id'] ?> -->
                                                 <div class="form-group col-sm-offset-5">
                                                     <label for="location" class="col-sm-2 control-label">送到：</label>
                                                     <div class="col-sm-4">
-                                                        <select class="form-control col-sm-4 "  name="location">
+                                                        <select class="form-control col-sm-4"  name="location">
                                                         <?php foreach ($location as $val) {?>
                                                             <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
                                                         <?php }?>
@@ -499,7 +647,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                 <div class="form-group">
                                                     <label for="num" class="col-sm-2 control-label">数量：</label>
                                                     <div class="col-sm-2">
-                                                        <input type="text" value="1" name="num" class="col-sm-8">
+                                                        <input type="text" value="1" name="num"  class="col-sm-8">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -513,7 +661,9 @@ if (!($proImgs && is_array($proImgs))) {
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-sm-offset-2 col-sm-10">
-                                                        <button type="submit" class="btn btn-default">提交订单</button>
+                                                        <button type="submit" class="btn btn-default" >提交订单</button>
+                                                        <input type="button"  id="Cart" class="btn btn-default" postid="<?php echo $proInfo['id']?>" style="margin-left:50px;"  value="加入购物车">
+                                                        <!-- onclick="Cart()" -->
                                                     </div>
                                                 </div>
                                             </form>

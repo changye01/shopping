@@ -99,5 +99,20 @@ $().ready(function () {
 
             },
         }
+    });
+    $("#order").validate({
+        rules:{
+            num:{
+                required:true,
+                // 必须输入整数
+                digits:true,
+            }
+        },
+        messages:{
+            num:{
+                required:"请输入要购买的数量",
+                digits:"请输入一个整数"
+            }
+        }
     })
 });

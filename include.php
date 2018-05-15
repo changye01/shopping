@@ -18,5 +18,6 @@ require_once 'album.inc.php';
 require_once 'upload.func.php';
 require_once 'user.inc.php';
 require_once 'order.inc.php';
+require_once 'cart.inc.php';
 connect();
 ?>

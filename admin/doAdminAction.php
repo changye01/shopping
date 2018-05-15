@@ -1,8 +1,7 @@
 <?php
 require_once '../include.php';
-$act = $_REQUEST['act'];
+@$act = $_REQUEST['act'];
 @$id = $_REQUEST['id'];
-
 if ($act == "logout") {
     logout();
 } elseif ($act == "addAdmin") {
@@ -66,6 +65,13 @@ if ($act == "logout") {
     $mes=editUser($id);
     alertMes($mes,"$url");
 }elseif($act=="cancelOrder"){
+    $url=$_SERVER['HTTP_REFERER'];
     $mes=cancelOrder($id);
-    alertMes($mes,"../index.php");
+    alertMes($mes,"$url");
+}elseif($act=="addCart"){
+    $mes=addCart($id);
+    echo($mes);
+}elseif($act=="cancelCart"){
+    $mes=cancelCart($id);
+    echo $mes;
 }
