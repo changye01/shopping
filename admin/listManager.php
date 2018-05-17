@@ -56,6 +56,7 @@
             </td>
         </tr>
         <tbody>
+        <?php if($rows):?>
             <?php $i=1;foreach($rows as $row):?>
             <!-- <form action="editManager.php" method="POST"> -->
             <tr>
@@ -79,6 +80,7 @@
                 </td>
             </tr>
             <?php $i++; endforeach;?>
+            <?php endif;?>
             <!-- </form> -->
             <?php if($totalRows>$pageSize):?>
             <tr>

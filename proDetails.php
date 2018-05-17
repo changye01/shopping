@@ -1,9 +1,9 @@
 <?php
 require_once './include.php';
-$id = $_REQUEST['id'];
-$proInfo = getProById($id);
+@$id = $_REQUEST['id'];
+@$proInfo = getProById($id);
 // var_dump($proInfo);
-$proImgs = getProImgsById($id);
+@$proImgs = getProImgsById($id);
 @$sessionId = $_SESSION['loginFlag'];
 // var_dump($sessionId);
 $sql = "SELECT location from shopping where id={$sessionId}";
@@ -40,6 +40,7 @@ if (!($proImgs && is_array($proImgs))) {
         <link type="text/css" rel="stylesheet" media="all" href="styles/jquery.jqzoom.css" />
         <script src="scripts/jquery.jqzoom-core.js" type="text/javascript"></script>
         <script>
+         
         function cancelOrder(id){
             if (window.confirm("确定申请取消订单吗? ")) {
                 window.location="./admin/doAdminAction.php?act=cancelOrder&id="+id;
@@ -108,9 +109,11 @@ if (!($proImgs && is_array($proImgs))) {
         
         </script>
         <style>
+        /* #reigon */
             .error{
                 color:red;
             }
+            /* #endregion */
         </style>
     </head>
 
@@ -332,7 +335,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputPassword3">Password</label>
-                                                    <input type="password" class="form-control" name="password" id="exampleInputPassword3" value="<?php echo $userInfo['password'] ?>"
+                                                    <input type="password" class="form-control" name="password" id="exampleInputPassword3" 
                                                     />
                                                 </div>
                                                 <div class="form-group">
@@ -409,6 +412,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                     </td>
                                                 </tr>
                                                 <tbody>
+                                                <?php if($orderInfo):?>
                                                     <?php $i=1;foreach(@$orderInfo as $row):?>
 
                                                     <!-- <form action="editManager.php" method="POST"> -->
@@ -417,9 +421,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                         <td>
                                                             <?php 
                                                                 $proName=getProByOrderPid($row['pid']);
-                                                                foreach($proName as $val){
-                                                                    echo $val;
-                                                                }
+                                                                echo $proName['pName'];
                                                             ?>
                                                         </td>
 
@@ -459,6 +461,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                         </td>
                                                     </tr>
                                                     <?php $i++; endforeach;?>
+                                                        <?php endif;?>
                                                     <!-- </form> -->
                                                 </tbody>
                                             </table>
@@ -577,6 +580,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                 </a>
                                             </div>
                                             <ul class="des_smimg clearfix" id="thumblist">
+                                            <?php if($proImgs):?>
                                                 <?php foreach ($proImgs as $key => $proImg): ?>
                                                 <li>
                                                     <a class="<?php echo $key == 0 ? " zoomThumbActive " : " "; ?> active" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: 'image_350/<?php echo $proImg['albumPath']; ?>',largeimage: 'image_800/<?php echo $proImg['albumPath']; ?>'}">
@@ -584,6 +588,7 @@ if (!($proImgs && is_array($proImgs))) {
                                                     </a>
                                                 </li>
                                                 <?php endforeach;?>
+                                                        <?php endif;?>
                                             </ul>
                                         </div>
                                     </div>
@@ -623,9 +628,11 @@ if (!($proImgs && is_array($proImgs))) {
                                                     <label for="location" class="col-sm-2 control-label">送到：</label>
                                                     <div class="col-sm-4">
                                                         <select class="form-control col-sm-4"  name="location">
+                                                        <?php if($location):?>
                                                         <?php foreach ($location as $val) {?>
                                                             <option value="<?php echo $val; ?>"><?php echo $val; ?></option>
                                                         <?php }?>
+                                                        <?php endif;?>
                                                         </select>
                                                         <!-- <input type="text" class="" id="location" name="location"> -->
                                                     </div>

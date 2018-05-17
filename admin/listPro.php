@@ -111,6 +111,7 @@ function change(val) {
 						</tr>
 					</thead>
 					<tbody>
+					<?php if($rowsPro):?>
 						<?php $i=1;foreach($rowsPro as $row):?>
 						<tr>
 							<!--这里的id和for里面的c1 需要循环出来-->
@@ -235,6 +236,7 @@ function change(val) {
 							</td>
 						</tr>	
 						<?php $i++;endforeach;?>
+														<?php endif;?>
 						<?php if($totalRows>$pageSize):?>
 						<tr>
 						<td colspan="6" style="text-align:center;">

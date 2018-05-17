@@ -1,6 +1,6 @@
 <?php 
 
-$rows=getProInfo();
+@$rows=getProInfo();
 ?>
 <!doctype html>
 <html>
@@ -26,6 +26,7 @@ $rows=getProInfo();
                 </tr>
             </thead>
             <tbody>
+            <?php if($rows):?>
                 <?php foreach($rows as $row):?>
                 <tr>
                     <!--这里的id和for里面的c1 需要循环出来-->
@@ -41,15 +42,17 @@ $rows=getProInfo();
                     </td>
                     <td>
                         <?php 
-                            $proImgs=getAllImgByProId($row['id']);
+                            @$proImgs=getAllImgByProId($row['id']);
+                            if($proImgs):
                             foreach($proImgs as $img):
                             ?>
                         <img width="100" height="100" src="uploads/<?php echo $img['albumPath'];?>" alt="" /> &nbsp;&nbsp;
-                        <?php endforeach;?>
+                        <?php endforeach;endif;?>
                     </td>
                     
                 </tr>
                 <?php  endforeach;?>
+                            <?php endif;?>
             </tbody>
         </table>
     </div>

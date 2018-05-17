@@ -17,6 +17,12 @@ require_once './include.php';
 // 	$arr['password']=md5($_POST['password']);
 //     $arr['regTime']=time();
 //     var_dump($arr);
-$arr=$_POST;
-var_dump($arr);
+// $arr=$_POST;
+
+// var_dump($arr);
+$sql="SELECT password from shopping where id=12";
+$rows=fetchOne($sql);
+// $password=md5($rows['password']);
+$password=$rows['password'];
+var_dump($password);
 ?>

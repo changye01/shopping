@@ -349,7 +349,7 @@ $sqlCart="SELECT * FROM shopping_cart where uid={$sessionId}";
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword3">Password</label>
-                                    <input type="password" class="form-control" name="password" id="exampleInputPassword3" value="<?php echo $userInfo['password'] ?>"
+                                    <input type="password" class="form-control" name="password" id="exampleInputPassword3" 
                                     />
                                 </div>
                                 <div class="form-group">
@@ -427,6 +427,7 @@ $sqlCart="SELECT * FROM shopping_cart where uid={$sessionId}";
                                     </td>
                                 </tr>
                                 <tbody>
+                                <?php if($orderInfo):?>
                                     <?php $i = 1;foreach (@$orderInfo as $row): ?>
 
                                     <!-- <form action="editManager.php" method="POST"> -->
@@ -435,9 +436,7 @@ $sqlCart="SELECT * FROM shopping_cart where uid={$sessionId}";
                                         <td>
                                             <?php
                                             $proName = getProByOrderPid($row['pid']);
-                                            foreach ($proName as $val) {
-                                                echo $val;
-                                            }
+                                            echo $proName['pName'];
                                             ?>
                                         </td>
 
@@ -477,6 +476,7 @@ $sqlCart="SELECT * FROM shopping_cart where uid={$sessionId}";
                                         </td>
                                     </tr>
                                     <?php $i++;endforeach;?>
+                                        <?php endif;?>
                                     <!-- </form> -->
                                 </tbody>
                             </table>
@@ -573,6 +573,7 @@ $sqlCart="SELECT * FROM shopping_cart where uid={$sessionId}";
                 <!-- 所有商品瀑布流start -->
                 <div class="row clearfix">
                     <div id="main">
+                    <?php if($proInfo):?>
                         <?php foreach(@$proInfo as $row){
                            @$proImg=getProImgById($row['id']);
                             // var_dump($proImg);
@@ -592,7 +593,7 @@ $sqlCart="SELECT * FROM shopping_cart where uid={$sessionId}";
                             </div>
                         </div>
                         <?php }?>
-
+                        <?php endif;?>
 
                     </div>
 
